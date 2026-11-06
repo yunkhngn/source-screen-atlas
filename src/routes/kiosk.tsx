@@ -67,7 +67,7 @@ function KioskPage() {
       <Frame>
         <div className="relative grid h-full place-items-center">
           <Deco />
-          <div className="relative w-[440px] rounded-3xl bg-card p-8 shadow-pop">
+          <div className="relative w-[440px] rounded-xl bg-card p-8 shadow-pop">
             <Logo />
             <h1 className="mt-6 text-2xl font-semibold">Cài đặt thiết bị</h1>
             <p className="mt-1 text-sm text-muted-foreground">Dành cho quản trị viên. Nhập thông tin được cấp khi tạo kiosk.</p>
@@ -91,12 +91,12 @@ function KioskPage() {
         <div className="text-center"><div className="text-3xl font-semibold tabular-nums">{fmtTime(now)}</div><div className="text-sm text-muted-foreground">{fmtDate(now)}</div></div>
         <div className="flex items-center gap-3 text-right">
           <div><div className="font-medium">{device.name}</div><div className="text-sm text-muted-foreground">Chế độ: {MODE_LABEL[device.mode]}</div></div>
-          <button onClick={() => setAdmin(!admin)} aria-label="Cài đặt" className="grid size-12 place-items-center rounded-2xl hover:bg-secondary"><Settings className="size-5" /></button>
+          <button onClick={() => setAdmin(!admin)} aria-label="Cài đặt" className="grid size-12 place-items-center rounded-lg hover:bg-secondary"><Settings className="size-5" /></button>
         </div>
       </header>
 
       {admin && (
-        <div className="absolute right-10 top-24 z-20 w-72 space-y-1 rounded-2xl bg-card p-3 text-sm shadow-pop">
+        <div className="absolute right-10 top-24 z-20 w-72 space-y-1 rounded-lg bg-card p-3 text-sm shadow-pop">
           <div className="px-2 py-1 text-xs font-semibold text-muted-foreground">Mô phỏng trạng thái</div>
           {([["full", "Thư viện đã đầy"], ["closed", "Ngoài giờ mở cửa"], ["offline", "Mất kết nối"], ["revoked", "Thiết bị bị thu hồi"]] as const).map(([p, l]) => <button key={p} onClick={() => { setPhase(p); setAdmin(false); }} className="block w-full rounded-lg px-2 py-2 text-left hover:bg-secondary">{l}</button>)}
           <button onClick={() => { setDevice(null); setPhase("setup"); setAdmin(false); }} className="block w-full rounded-lg px-2 py-2 text-left text-destructive hover:bg-secondary">Ngắt thiết bị</button>
@@ -109,7 +109,7 @@ function KioskPage() {
           {phase === "qr" ? (
             <div className="grid h-full place-items-center text-primary-foreground">
               <div className="text-center">
-                <div className="relative mx-auto size-72 rounded-3xl border-4 border-yellow"><div className="animate-scan absolute inset-x-4 h-1 rounded bg-yellow" /></div>
+                <div className="relative mx-auto size-72 rounded-xl border-2 border-primary"><div className="animate-scan absolute inset-x-4 h-0.5 rounded bg-primary" /></div>
                 <div className="mt-6 text-2xl font-semibold">Đưa mã QR vào khung</div>
                 <Btn variant="accent" size="lg" className="mt-6" onClick={() => process("QR")}>Mô phỏng quét mã</Btn>
               </div>
@@ -144,14 +144,14 @@ function KioskPage() {
         {/* Side panel */}
         <div className="flex flex-col gap-4">
           {phase === "qr" ? (
-            <Btn size="xl" variant="outline" className="h-20 rounded-3xl" onClick={() => setPhase("ready")}><ArrowLeft className="size-5" /> Quay lại nhận diện khuôn mặt</Btn>
+            <Btn size="xl" variant="outline" className="h-20 rounded-xl" onClick={() => setPhase("ready")}><ArrowLeft className="size-5" /> Quay lại nhận diện khuôn mặt</Btn>
           ) : (
             <>
-              <Btn size="xl" className="h-24 rounded-3xl text-xl" onClick={() => startFace()} disabled={phase !== "ready"}><ScanFace className="size-7" /> Bắt đầu nhận diện</Btn>
-              <Btn size="xl" variant="accent" className="h-20 rounded-3xl" onClick={() => setPhase("qr")} disabled={phase !== "ready" && phase !== "position"}><QrCode className="size-6" /> Sử dụng mã QR</Btn>
+              <Btn size="xl" className="h-24 rounded-xl text-xl" onClick={() => startFace()} disabled={phase !== "ready"}><ScanFace className="size-7" /> Bắt đầu nhận diện</Btn>
+              <Btn size="xl" variant="accent" className="h-20 rounded-xl" onClick={() => setPhase("qr")} disabled={phase !== "ready" && phase !== "position"}><QrCode className="size-6" /> Sử dụng mã QR</Btn>
             </>
           )}
-          <div className="flex-1 rounded-3xl bg-card p-6 shadow-soft">
+          <div className="flex-1 rounded-xl bg-card p-6 shadow-soft">
             <div className="text-lg font-semibold">Hướng dẫn</div>
             <ol className="mt-4 space-y-4 text-base">
               {["Đứng cách kiosk khoảng 50 cm", "Nhìn thẳng, không đeo khẩu trang", "Chờ màn hình xác nhận màu xanh"].map((t, i) => <li key={t} className="flex gap-3"><span className="grid size-8 shrink-0 place-items-center rounded-full bg-yellow font-semibold">{i + 1}</span>{t}</li>)}

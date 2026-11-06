@@ -41,10 +41,10 @@ function Qr() {
     <>
       <MHeader title="Mã QR cá nhân" />
       <div className="px-5 pb-6">
-        <div className="rounded-3xl bg-card p-6 text-center shadow-soft">
+        <div className="rounded-xl bg-card p-6 text-center shadow-soft">
           <div className="text-lg font-semibold">{me.name}</div>
           <div className="text-sm text-muted-foreground">{me.code}</div>
-          <div className="relative mx-auto mt-5 grid aspect-square w-full max-w-[260px] place-items-center rounded-2xl bg-yellow-soft p-4">
+          <div className="relative mx-auto mt-5 grid aspect-square w-full max-w-[260px] place-items-center rounded-lg bg-yellow-soft p-4">
             {st === "active" && <QRCodeSVG value={token} size={228} bgColor="transparent" fgColor="currentColor" className="text-foreground" />}
             {st === "generating" && <Loader2 className="size-8 animate-spin text-muted-foreground" />}
             {st !== "active" && st !== "generating" && (

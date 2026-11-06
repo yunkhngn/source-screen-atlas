@@ -40,7 +40,7 @@ function AdminOverview() {
       <div className="mt-5 grid gap-5 lg:grid-cols-3">
         <div className="grid gap-3 lg:col-span-1">
           {[{ to: "/admin/accounts", l: "Tài khoản", i: UserCog }, { to: "/admin/shifts", l: "Phân ca nhân viên", i: CalendarRange }, { to: "/admin/config", l: "Cấu hình hệ thống", i: Settings2 }].map((x) => (
-            <Link key={x.to} to={x.to} className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft hover:bg-secondary"><span className="grid size-10 place-items-center rounded-xl bg-yellow-soft"><x.i className="size-4" /></span><span className="font-medium">{x.l}</span></Link>
+            <Link key={x.to} to={x.to} className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 shadow-soft hover:bg-secondary"><span className="grid size-10 place-items-center rounded-xl bg-yellow-soft"><x.i className="size-4" /></span><span className="font-medium">{x.l}</span></Link>
           ))}
         </div>
         <div className="lg:col-span-2"><OccupantsPreview /></div>

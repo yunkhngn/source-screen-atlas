@@ -65,13 +65,13 @@ function Face() {
       <div className="px-5 pb-6">
         {step === "overview" && (
           <div className="space-y-4">
-            <div className="rounded-3xl bg-pink p-6 text-center">
+            <div className="rounded-xl bg-pink p-6 text-center">
               <ScanFace className="mx-auto size-12" strokeWidth={1.5} />
               <div className="mt-3 text-lg font-semibold">{wasEnrolled ? "Đã đăng ký khuôn mặt" : enr.status === "CONSENT_REQUIRED" ? "Cần đồng ý chính sách mới" : "Chưa đăng ký khuôn mặt"}</div>
               <p className="mt-1 text-sm text-foreground/75">Vào thư viện chỉ bằng cách nhìn vào kiosk.</p>
             </div>
             {wasEnrolled && (
-              <dl className="divide-y divide-border rounded-2xl bg-card text-sm shadow-soft">
+              <dl className="divide-y divide-border rounded-lg bg-card text-sm shadow-soft">
                 <div className="flex justify-between px-4 py-3"><dt className="text-muted-foreground">Ngày đăng ký</dt><dd>{fmtDateTime(enr.at!)}</dd></div>
                 <div className="flex justify-between px-4 py-3"><dt className="text-muted-foreground">Số ảnh mẫu</dt><dd>{enr.samples}</dd></div>
                 <div className="flex justify-between px-4 py-3"><dt className="text-muted-foreground">Phiên bản chính sách</dt><dd>{enr.policy}</dd></div>
@@ -80,7 +80,7 @@ function Face() {
             <Notice tone="info">Bạn luôn có thể dùng mã QR thay cho khuôn mặt. Hệ thống không lưu ảnh khuôn mặt của bạn.</Notice>
             <Btn size="lg" className="w-full" onClick={start}>{wasEnrolled ? "Đăng ký lại" : "Đăng ký khuôn mặt"}</Btn>
             {wasEnrolled && <Btn size="lg" variant="outline" className="w-full text-destructive" onClick={() => setDel(true)}><Trash2 className="size-4" /> Xóa dữ liệu khuôn mặt</Btn>}
-            <div className="rounded-2xl border border-dashed border-border p-3 text-xs text-muted-foreground">
+            <div className="rounded-lg border border-dashed border-border p-3 text-xs text-muted-foreground">
               Mô phỏng trạng thái:{" "}
               <button className="underline" onClick={() => setEnr({ status: "CONSENT_REQUIRED" })}>cần đồng ý lại</button> ·{" "}
               <button className="underline" onClick={() => setEnr({ status: "NONE" })}>chưa đăng ký</button>
@@ -91,14 +91,14 @@ function Face() {
         {step === "consent" && (
           <div className="space-y-4">
             <div className="flex items-center gap-2"><ShieldCheck className="size-5" /><h2 className="text-lg font-semibold">Đồng ý xử lý dữ liệu sinh trắc</h2></div>
-            <div className="max-h-80 space-y-3 overflow-y-auto rounded-2xl bg-card p-4 text-sm leading-relaxed shadow-soft">
+            <div className="max-h-80 space-y-3 overflow-y-auto rounded-lg bg-card p-4 text-sm leading-relaxed shadow-soft">
               <p><b>Mục đích:</b> Dữ liệu khuôn mặt chỉ dùng để nhận diện bạn khi ra vào thư viện.</p>
               <p><b>Ảnh chụp tạm thời:</b> Ảnh bạn gửi chỉ dùng để tạo mẫu nhận diện và được xóa sau khi xử lý xong. Hệ thống không lưu ảnh.</p>
               <p><b>Quyền xóa:</b> Bạn có thể xóa dữ liệu khuôn mặt bất kỳ lúc nào. Lịch sử ra vào vẫn được giữ lại.</p>
               <p><b>Lựa chọn khác:</b> Không đồng ý cũng không sao — bạn vẫn dùng mã QR bình thường.</p>
               <p className="text-xs text-muted-foreground">Phiên bản chính sách: {POLICY}</p>
             </div>
-            <label className="flex items-start gap-3 rounded-2xl bg-yellow-soft p-4 text-sm"><Checkbox checked={agree} onCheckedChange={(v) => setAgree(!!v)} className="mt-0.5" /> Tôi đã đọc và đồng ý cho thư viện xử lý dữ liệu khuôn mặt của tôi theo chính sách trên.</label>
+            <label className="flex items-start gap-3 rounded-lg bg-yellow-soft p-4 text-sm"><Checkbox checked={agree} onCheckedChange={(v) => setAgree(!!v)} className="mt-0.5" /> Tôi đã đọc và đồng ý cho thư viện xử lý dữ liệu khuôn mặt của tôi theo chính sách trên.</label>
             <Btn size="lg" className="w-full" disabled={!agree} onClick={() => setStep("prepare")}>Đồng ý và tiếp tục</Btn>
             <Link to="/student/qr" className="block text-center text-sm font-medium underline">Sử dụng mã QR</Link>
           </div>
@@ -108,7 +108,7 @@ function Face() {
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">Chuẩn bị chụp ảnh</h2>
             <div className="grid grid-cols-3 gap-2 text-center text-xs">
-              {[{ i: Sun, t: "Đủ ánh sáng" }, { i: User, t: "Chỉ một người" }, { i: EyeOff, t: "Không che mặt" }].map((x) => <div key={x.t} className="rounded-2xl bg-card p-3 shadow-soft"><x.i className="mx-auto mb-1.5 size-5" />{x.t}</div>)}
+              {[{ i: Sun, t: "Đủ ánh sáng" }, { i: User, t: "Chỉ một người" }, { i: EyeOff, t: "Không che mặt" }].map((x) => <div key={x.t} className="rounded-lg bg-card p-3 shadow-soft"><x.i className="mx-auto mb-1.5 size-5" />{x.t}</div>)}
             </div>
             {cam === "denied" && <Notice tone="warning" title="Chưa có quyền dùng camera">Bạn có thể bật quyền camera trong cài đặt trình duyệt, hoặc chọn ảnh có sẵn trên thiết bị.</Notice>}
             {cam !== "denied" && <Btn size="lg" className="w-full" onClick={() => { setCam("granted"); setStep("capture"); }}><Camera className="size-4" /> Cho phép camera</Btn>}
@@ -121,7 +121,7 @@ function Face() {
           <div className="space-y-4">
             <div className="flex items-center justify-between"><h2 className="text-lg font-semibold">Chụp {ENROLL_MIN_IMAGES}–{ENROLL_MAX_IMAGES} ảnh</h2><Badge tone={imgs.length >= ENROLL_MIN_IMAGES ? "success" : "neutral"}>{imgs.length}/{ENROLL_MAX_IMAGES}</Badge></div>
             {cam === "granted" && (
-              <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-primary">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-primary">
                 <div className="absolute inset-[18%] rounded-[50%] border-4 border-dashed border-yellow" />
                 <div className="absolute inset-x-0 bottom-4 text-center text-sm text-primary-foreground">Nhìn thẳng, rồi hơi nghiêng đầu ở các ảnh sau</div>
               </div>
@@ -155,7 +155,7 @@ function Face() {
 
         {step === "result" && (fail ? (
           <div className="space-y-4 py-6 text-center">
-            <div className="mx-auto grid size-16 place-items-center rounded-3xl bg-pink"><AlertTriangle className="size-8 text-destructive" /></div>
+            <div className="mx-auto grid size-16 place-items-center rounded-xl bg-pink"><AlertTriangle className="size-8 text-destructive" /></div>
             <div className="text-lg font-semibold">Chưa đăng ký được</div>
             <p className="text-sm text-muted-foreground">{FAILS[fail]}</p>
             {wasEnrolled && <Notice tone="info">Dữ liệu khuôn mặt đã đăng ký trước đó vẫn được giữ nguyên.</Notice>}
@@ -164,7 +164,7 @@ function Face() {
           </div>
         ) : (
           <div className="space-y-4 py-6 text-center">
-            <div className="mx-auto grid size-16 place-items-center rounded-3xl bg-mint"><CheckCircle2 className="size-8 text-success" /></div>
+            <div className="mx-auto grid size-16 place-items-center rounded-xl bg-mint"><CheckCircle2 className="size-8 text-success" /></div>
             <div className="text-lg font-semibold">Đăng ký thành công</div>
             <p className="text-sm text-muted-foreground">Từ giờ bạn có thể vào thư viện bằng khuôn mặt. Ảnh tạm thời đã được xóa.</p>
             <Btn size="lg" className="w-full" onClick={() => setStep("overview")}>Xong</Btn>

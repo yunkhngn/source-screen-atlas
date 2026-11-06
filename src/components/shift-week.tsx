@@ -34,7 +34,7 @@ export function ShiftWeek({ shifts, week, onPick, staffName }: { shifts: Shift[]
         const day = start + i * DAY;
         const items = shifts.filter((s) => s.start >= day && s.start < day + DAY).sort((a, b) => a.start - b.start);
         return (
-          <div key={d} className={cn("min-h-64 rounded-2xl border border-border p-2", day === today ? "bg-yellow-soft" : "bg-card")}>
+          <div key={d} className={cn("min-h-64 rounded-lg border border-border p-2", day === today ? "bg-yellow-soft" : "bg-card")}>
             <div className="mb-2 px-1 text-xs"><span className="font-semibold">{d}</span> <span className="text-muted-foreground">{fmtDate(day).slice(0, 5)}</span></div>
             <div className="space-y-1.5">
               {items.map((s) => {
