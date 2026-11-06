@@ -113,7 +113,7 @@ export function Stat({ label, value, sub, icon, color = "white" }: { label: stri
     <div className={cn("animate-rise relative overflow-hidden rounded-2xl border border-border/70 p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-pop", statBg[color])}>
       <div className="flex items-center justify-between text-sm font-medium">
         <span>{label}</span>
-        {icon && <span className="grid size-9 place-items-center rounded-xl bg-brand text-primary-foreground shadow-glow">{icon}</span>}
+        {icon && <span className={cn("grid size-9 place-items-center rounded-xl text-primary-foreground", color === "yellow" ? "bg-card/20" : "bg-brand shadow-glow")}>{icon}</span>}
       </div>
       <div className="mt-3 font-display text-3xl font-semibold tracking-tight tabular">{value}</div>
       {sub && <div className="mt-1 text-xs opacity-70">{sub}</div>}
