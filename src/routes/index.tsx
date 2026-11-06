@@ -39,8 +39,8 @@ function DemoGate() {
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {cards.map((c) => (
-            <button key={c.role} onClick={() => go(c.role)} className="group flex items-start gap-4 rounded-2xl border border-border bg-card p-5 text-left shadow-soft transition hover:-translate-y-0.5 hover:shadow-pop">
-              <span className={`grid size-12 shrink-0 place-items-center rounded-2xl ${c.bg}`}><c.icon className="size-5" /></span>
+            <button key={c.role} onClick={() => go(c.role)} className="group flex items-start gap-4 rounded-lg border border-border bg-card p-5 text-left shadow-soft transition hover:-translate-y-0.5 hover:shadow-pop">
+              <span className={`grid size-12 shrink-0 place-items-center rounded-lg ${c.bg}`}><c.icon className="size-5" /></span>
               <span className="flex-1">
                 <span className="flex items-center justify-between font-semibold">{c.title}<ArrowRight className="size-4 opacity-0 transition group-hover:opacity-100" /></span>
                 <span className="mt-1 block text-sm text-muted-foreground">{c.desc}</span>
@@ -48,8 +48,8 @@ function DemoGate() {
               </span>
             </button>
           ))}
-          <Link to="/kiosk" className="group flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-pop">
-            <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-sky"><MonitorSmartphone className="size-5" /></span>
+          <Link to="/kiosk" className="group flex items-start gap-4 rounded-lg border border-border bg-card p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-pop">
+            <span className="grid size-12 shrink-0 place-items-center rounded-lg bg-sky"><MonitorSmartphone className="size-5" /></span>
             <span className="flex-1">
               <span className="font-semibold">Kiosk tự phục vụ</span>
               <span className="mt-1 block text-sm text-muted-foreground">Nhận diện khuôn mặt, quét QR dự phòng, cài đặt thiết bị.</span>

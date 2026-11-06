@@ -49,7 +49,7 @@ function Manual() {
         <Card className="p-6">
           {step === "done" ? (
             <div className="py-10 text-center">
-              <div className="mx-auto grid size-16 place-items-center rounded-3xl bg-mint"><CheckCircle2 className="size-8 text-success" /></div>
+              <div className="mx-auto grid size-16 place-items-center rounded-xl bg-mint"><CheckCircle2 className="size-8 text-success" /></div>
               <h2 className="mt-4 text-xl font-semibold">Đã ghi nhận {dir === "IN" ? "vào" : "ra"}</h2>
               <p className="mt-1 text-sm text-muted-foreground">{targetName} · {fmtDateTime(Date.now())}</p>
               <Btn className="mt-6" onClick={reset}>Ghi nhận lượt khác</Btn>

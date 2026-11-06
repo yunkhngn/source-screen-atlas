@@ -26,7 +26,7 @@ function StuHistory() {
         {list.length === 0 ? <Empty icon={<History className="size-6" />} title="Chưa có lượt ra vào" desc="Không có lượt nào trong khoảng thời gian này." /> : (
           <div className="mt-4 space-y-2.5">
             {list.slice(0, shown).map((s) => (
-              <Link key={s.id} to="/student/history/$sessionId" params={{ sessionId: s.id }} className="block rounded-2xl bg-card p-4 shadow-soft">
+              <Link key={s.id} to="/student/history/$sessionId" params={{ sessionId: s.id }} className="block rounded-lg bg-card p-4 shadow-soft">
                 <div className="flex items-center justify-between"><span className="font-semibold">{fmtDate(s.entryAt)}</span>{s.exitAt ? <span className="text-sm text-muted-foreground">{fmtDuration(s.exitAt - s.entryAt)}</span> : <Badge tone="success">Đang mở</Badge>}</div>
                 <div className="mt-2 flex items-center gap-2 text-sm">
                   <span>{fmtTime(s.entryAt)} → {s.exitAt ? fmtTime(s.exitAt) : "…"}</span>

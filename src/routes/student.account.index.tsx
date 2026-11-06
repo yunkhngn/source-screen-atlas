@@ -24,17 +24,17 @@ function Account() {
     <>
       <MHeader title="Tài khoản" />
       <div className="space-y-4 px-5">
-        <div className="flex items-center gap-4 rounded-3xl bg-yellow p-5"><Avatar name={me.name} className="size-14 bg-card text-base" /><div><div className="text-lg font-semibold">{me.name}</div><div className="text-sm">{ROLE_LABEL[me.role]}</div></div></div>
-        <dl className="divide-y divide-border rounded-2xl bg-card text-sm shadow-soft">
+        <div className="flex items-center gap-4 rounded-xl bg-yellow p-5"><Avatar name={me.name} className="size-14 bg-card text-base" /><div><div className="text-lg font-semibold">{me.name}</div><div className="text-sm">{ROLE_LABEL[me.role]}</div></div></div>
+        <dl className="divide-y divide-border rounded-lg bg-card text-sm shadow-soft">
           <div className="flex justify-between px-4 py-3"><dt className="text-muted-foreground">Mã tài khoản</dt><dd className="font-medium">{me.code}</dd></div>
           <div className="flex justify-between gap-4 px-4 py-3"><dt className="text-muted-foreground">Email</dt><dd className="truncate font-medium">{me.email}</dd></div>
         </dl>
-        <div className="divide-y divide-border rounded-2xl bg-card shadow-soft">
+        <div className="divide-y divide-border rounded-lg bg-card shadow-soft">
           <Row to="/student/face" icon={<ScanFace className="size-4" />} label="Khuôn mặt" right={enr.status === "ENROLLED" ? <Badge tone="success">Đã đăng ký</Badge> : <Badge>Chưa đăng ký</Badge>} />
           <Row to="/student/account/password" icon={<KeyRound className="size-4" />} label="Đổi mật khẩu" />
           <Row to="/student/account/rules" icon={<BookOpenText className="size-4" />} label="Quy định thư viện" />
         </div>
-        <button onClick={() => setOut(true)} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-card py-3.5 text-sm font-medium text-destructive shadow-soft"><LogOut className="size-4" /> Đăng xuất</button>
+        <button onClick={() => setOut(true)} className="flex w-full items-center justify-center gap-2 rounded-lg bg-card py-3.5 text-sm font-medium text-destructive shadow-soft"><LogOut className="size-4" /> Đăng xuất</button>
         <p className="text-center text-xs text-muted-foreground">Cần sửa thông tin? Vui lòng liên hệ quản trị viên.</p>
       </div>
       <Confirm open={out} onOpenChange={setOut} title="Đăng xuất?" desc="Bạn sẽ cần đăng nhập lại để dùng mã QR." confirmLabel="Đăng xuất" onConfirm={() => { logout(); navigate({ to: "/login" }); }} />

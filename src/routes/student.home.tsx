@@ -24,7 +24,7 @@ function Home() {
       <div className="text-sm text-muted-foreground">Xin chào,</div>
       <h1 className="text-2xl font-semibold">{me.name}</h1>
 
-      <div className={`relative mt-5 overflow-hidden rounded-3xl p-5 ${open ? "bg-mint" : "bg-card border border-border"}`}>
+      <div className={`relative mt-5 overflow-hidden rounded-xl p-5 ${open ? "bg-mint" : "bg-card border border-border"}`}>
         <div aria-hidden className="blob absolute -right-8 -top-10 size-32 bg-card/40" />
         <div className="relative">
           <Badge tone={open ? "success" : "neutral"}>{open ? "Đang trong thư viện" : "Đang ở ngoài thư viện"}</Badge>
@@ -38,15 +38,15 @@ function Home() {
         </div>
       </div>
 
-      <Link to="/student/qr" className="mt-4 flex items-center gap-4 rounded-3xl bg-primary p-5 text-primary-foreground">
-        <span className="grid size-12 place-items-center rounded-2xl bg-yellow text-foreground"><QrCode className="size-6" /></span>
+      <Link to="/student/qr" className="mt-4 flex items-center gap-4 rounded-xl bg-primary p-5 text-primary-foreground">
+        <span className="grid size-12 place-items-center rounded-lg bg-yellow text-foreground"><QrCode className="size-6" /></span>
         <span className="flex-1"><span className="block font-semibold">Mở mã QR</span><span className="text-sm opacity-75">Dùng khi kiosk không nhận diện được</span></span>
         <ChevronRight className="size-5" />
       </Link>
 
       <Link to="/student/face" className="mt-3 block">
         <Card className="flex items-center gap-4 p-4">
-          <span className="grid size-11 place-items-center rounded-2xl bg-pink"><ScanFace className="size-5" /></span>
+          <span className="grid size-11 place-items-center rounded-lg bg-pink"><ScanFace className="size-5" /></span>
           <div className="flex-1"><div className="font-medium">Khuôn mặt</div><div className="text-sm text-muted-foreground">{enr.status === "ENROLLED" ? "Đã đăng ký" : enr.status === "CONSENT_REQUIRED" ? "Cần đồng ý chính sách mới" : "Chưa đăng ký"}</div></div>
           {enr.status === "ENROLLED" ? <Badge tone="success">Sẵn sàng</Badge> : <Badge tone="brand">Đăng ký</Badge>}
         </Card>
@@ -55,7 +55,7 @@ function Home() {
       <div className="mt-6 flex items-center justify-between"><h2 className="font-semibold">Gần đây</h2><Link to="/student/history" className="text-sm text-muted-foreground">Xem tất cả</Link></div>
       <div className="mt-2 space-y-2">
         {sessions.slice(0, 3).map((s) => (
-          <Link key={s.id} to="/student/history/$sessionId" params={{ sessionId: s.id }} className="flex items-center gap-3 rounded-2xl bg-card p-3.5 shadow-soft">
+          <Link key={s.id} to="/student/history/$sessionId" params={{ sessionId: s.id }} className="flex items-center gap-3 rounded-lg bg-card p-3.5 shadow-soft">
             <span className="grid size-9 place-items-center rounded-xl bg-sky-soft"><LogIn className="size-4" /></span>
             <div className="flex-1 text-sm"><div className="font-medium">{fmtDateTime(s.entryAt)}</div><div className="text-muted-foreground">{s.exitAt ? fmtDuration(s.exitAt - s.entryAt) : "Đang trong thư viện"}</div></div>
             <ChevronRight className="size-4 text-muted-foreground" />

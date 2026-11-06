@@ -66,7 +66,7 @@ function DeskLayout() {
                 {g.items.map((it) => {
                   const active = path === it.to || path.startsWith(it.to + "/");
                   return (
-                    <Link key={it.to} to={it.to} title={it.label} className={cn("flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition", active ? "bg-yellow font-medium" : "text-foreground/75 hover:bg-secondary hover:text-foreground", collapsed && "justify-center")}>
+                    <Link key={it.to} to={it.to} title={it.label} className={cn("flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition", active ? "bg-accent font-medium text-accent-foreground shadow-[inset_2px_0_0_var(--primary)]" : "text-foreground/75 hover:bg-secondary hover:text-foreground", collapsed && "justify-center")}>
                       <it.icon className="size-[18px] shrink-0" strokeWidth={1.75} />
                       {!collapsed && <span className="truncate">{it.label}</span>}
                     </Link>
