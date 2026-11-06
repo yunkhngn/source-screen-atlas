@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Library Access prototype
+- Mock-only prototype: all data lives in the in-memory zustand store (`src/lib/store.ts`); no backend, so the root renders client-only to avoid time-based hydration drift.
+- Business rules and role access live in `src/lib/rules.ts` (mirrors source `_canAccess`) and are covered by `src/test/rules.test.ts`.
+- Desktop staff screens sit under the `_desk` pathless layout; student under `/student`, kiosk is a standalone fullscreen route.
+- Zustand selectors must return stable values; filter outside the selector to avoid render loops.
