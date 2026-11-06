@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SessionStatus } from "./session";
+import { SessionStatus } from "@/components/session-status";
 
 export const Route = createFileRoute("/forbidden")({
   head: () => ({
@@ -10,5 +10,9 @@ export const Route = createFileRoute("/forbidden")({
       { property: "og:description", content: "Trang bị giới hạn theo vai trò." },
     ],
   }),
-  component: () => <SessionStatus kind="forbidden" />,
+  component: Forbidden,
 });
+
+function Forbidden() {
+  return <SessionStatus kind="forbidden" />;
+}
