@@ -10,33 +10,193 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DeskRouteImport } from './routes/_desk'
+import { Route as FirstPasswordChangeRouteImport } from './routes/first-password-change'
+import { Route as ForbiddenRouteImport } from './routes/forbidden'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as SessionRouteImport } from './routes/session'
+import { Route as DeskLibrarianOverviewRouteImport } from './routes/_desk.librarian.overview'
+import { Route as DeskStaffChangePasswordRouteImport } from './routes/_desk.staff.change-password'
+import { Route as DeskStaffHistoryRouteImport } from './routes/_desk.staff.history'
+import { Route as DeskStaffManualAccessRouteImport } from './routes/_desk.staff.manual-access'
+import { Route as DeskStaffOccupantsRouteImport } from './routes/_desk.staff.occupants'
+import { Route as DeskStaffProfileRouteImport } from './routes/_desk.staff.profile'
+import { Route as DeskStaffVisitorsIndexRouteImport } from './routes/_desk.staff.visitors.index'
+import { Route as DeskStaffVisitorsIdRouteImport } from './routes/_desk.staff.visitors.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeskRoute = DeskRouteImport.update({
+  id: '/_desk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FirstPasswordChangeRoute = FirstPasswordChangeRouteImport.update({
+  id: '/first-password-change',
+  path: '/first-password-change',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForbiddenRoute = ForbiddenRouteImport.update({
+  id: '/forbidden',
+  path: '/forbidden',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SessionRoute = SessionRouteImport.update({
+  id: '/session',
+  path: '/session',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeskLibrarianOverviewRoute = DeskLibrarianOverviewRouteImport.update({
+  id: '/librarian/overview',
+  path: '/librarian/overview',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffChangePasswordRoute = DeskStaffChangePasswordRouteImport.update({
+  id: '/staff/change-password',
+  path: '/staff/change-password',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffHistoryRoute = DeskStaffHistoryRouteImport.update({
+  id: '/staff/history',
+  path: '/staff/history',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffManualAccessRoute = DeskStaffManualAccessRouteImport.update({
+  id: '/staff/manual-access',
+  path: '/staff/manual-access',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffOccupantsRoute = DeskStaffOccupantsRouteImport.update({
+  id: '/staff/occupants',
+  path: '/staff/occupants',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffProfileRoute = DeskStaffProfileRouteImport.update({
+  id: '/staff/profile',
+  path: '/staff/profile',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffVisitorsIndexRoute = DeskStaffVisitorsIndexRouteImport.update({
+  id: '/staff/visitors/',
+  path: '/staff/visitors/',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffVisitorsIdRoute = DeskStaffVisitorsIdRouteImport.update({
+  id: '/staff/visitors/$id',
+  path: '/staff/visitors/$id',
+  getParentRoute: () => DeskRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/first-password-change': typeof FirstPasswordChangeRoute
+  '/forbidden': typeof ForbiddenRoute
+  '/login': typeof LoginRoute
+  '/session': typeof SessionRoute
+  '/librarian/overview': typeof DeskLibrarianOverviewRoute
+  '/staff/change-password': typeof DeskStaffChangePasswordRoute
+  '/staff/history': typeof DeskStaffHistoryRoute
+  '/staff/manual-access': typeof DeskStaffManualAccessRoute
+  '/staff/occupants': typeof DeskStaffOccupantsRoute
+  '/staff/profile': typeof DeskStaffProfileRoute
+  '/staff/visitors/$id': typeof DeskStaffVisitorsIdRoute
+  '/staff/visitors/': typeof DeskStaffVisitorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/first-password-change': typeof FirstPasswordChangeRoute
+  '/forbidden': typeof ForbiddenRoute
+  '/login': typeof LoginRoute
+  '/session': typeof SessionRoute
+  '/librarian/overview': typeof DeskLibrarianOverviewRoute
+  '/staff/change-password': typeof DeskStaffChangePasswordRoute
+  '/staff/history': typeof DeskStaffHistoryRoute
+  '/staff/manual-access': typeof DeskStaffManualAccessRoute
+  '/staff/occupants': typeof DeskStaffOccupantsRoute
+  '/staff/profile': typeof DeskStaffProfileRoute
+  '/staff/visitors/$id': typeof DeskStaffVisitorsIdRoute
+  '/staff/visitors': typeof DeskStaffVisitorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_desk': typeof DeskRouteWithChildren
+  '/first-password-change': typeof FirstPasswordChangeRoute
+  '/forbidden': typeof ForbiddenRoute
+  '/login': typeof LoginRoute
+  '/session': typeof SessionRoute
+  '/_desk/librarian/overview': typeof DeskLibrarianOverviewRoute
+  '/_desk/staff/change-password': typeof DeskStaffChangePasswordRoute
+  '/_desk/staff/history': typeof DeskStaffHistoryRoute
+  '/_desk/staff/manual-access': typeof DeskStaffManualAccessRoute
+  '/_desk/staff/occupants': typeof DeskStaffOccupantsRoute
+  '/_desk/staff/profile': typeof DeskStaffProfileRoute
+  '/_desk/staff/visitors/$id': typeof DeskStaffVisitorsIdRoute
+  '/_desk/staff/visitors/': typeof DeskStaffVisitorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/first-password-change'
+    | '/forbidden'
+    | '/login'
+    | '/session'
+    | '/librarian/overview'
+    | '/staff/change-password'
+    | '/staff/history'
+    | '/staff/manual-access'
+    | '/staff/occupants'
+    | '/staff/profile'
+    | '/staff/visitors/$id'
+    | '/staff/visitors/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/first-password-change'
+    | '/forbidden'
+    | '/login'
+    | '/session'
+    | '/librarian/overview'
+    | '/staff/change-password'
+    | '/staff/history'
+    | '/staff/manual-access'
+    | '/staff/occupants'
+    | '/staff/profile'
+    | '/staff/visitors/$id'
+    | '/staff/visitors'
+  id:
+    | '__root__'
+    | '/'
+    | '/_desk'
+    | '/first-password-change'
+    | '/forbidden'
+    | '/login'
+    | '/session'
+    | '/_desk/librarian/overview'
+    | '/_desk/staff/change-password'
+    | '/_desk/staff/history'
+    | '/_desk/staff/manual-access'
+    | '/_desk/staff/occupants'
+    | '/_desk/staff/profile'
+    | '/_desk/staff/visitors/$id'
+    | '/_desk/staff/visitors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DeskRoute: typeof DeskRouteWithChildren
+  FirstPasswordChangeRoute: typeof FirstPasswordChangeRoute
+  ForbiddenRoute: typeof ForbiddenRoute
+  LoginRoute: typeof LoginRoute
+  SessionRoute: typeof SessionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +208,131 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_desk': {
+      id: '/_desk'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof DeskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/first-password-change': {
+      id: '/first-password-change'
+      path: '/first-password-change'
+      fullPath: '/first-password-change'
+      preLoaderRoute: typeof FirstPasswordChangeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forbidden': {
+      id: '/forbidden'
+      path: '/forbidden'
+      fullPath: '/forbidden'
+      preLoaderRoute: typeof ForbiddenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/session': {
+      id: '/session'
+      path: '/session'
+      fullPath: '/session'
+      preLoaderRoute: typeof SessionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_desk/librarian/overview': {
+      id: '/_desk/librarian/overview'
+      path: '/librarian/overview'
+      fullPath: '/librarian/overview'
+      preLoaderRoute: typeof DeskLibrarianOverviewRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/change-password': {
+      id: '/_desk/staff/change-password'
+      path: '/staff/change-password'
+      fullPath: '/staff/change-password'
+      preLoaderRoute: typeof DeskStaffChangePasswordRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/history': {
+      id: '/_desk/staff/history'
+      path: '/staff/history'
+      fullPath: '/staff/history'
+      preLoaderRoute: typeof DeskStaffHistoryRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/manual-access': {
+      id: '/_desk/staff/manual-access'
+      path: '/staff/manual-access'
+      fullPath: '/staff/manual-access'
+      preLoaderRoute: typeof DeskStaffManualAccessRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/occupants': {
+      id: '/_desk/staff/occupants'
+      path: '/staff/occupants'
+      fullPath: '/staff/occupants'
+      preLoaderRoute: typeof DeskStaffOccupantsRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/profile': {
+      id: '/_desk/staff/profile'
+      path: '/staff/profile'
+      fullPath: '/staff/profile'
+      preLoaderRoute: typeof DeskStaffProfileRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/visitors/': {
+      id: '/_desk/staff/visitors/'
+      path: '/staff/visitors'
+      fullPath: '/staff/visitors/'
+      preLoaderRoute: typeof DeskStaffVisitorsIndexRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/visitors/$id': {
+      id: '/_desk/staff/visitors/$id'
+      path: '/staff/visitors/$id'
+      fullPath: '/staff/visitors/$id'
+      preLoaderRoute: typeof DeskStaffVisitorsIdRouteImport
+      parentRoute: typeof DeskRoute
+    }
   }
 }
 
+interface DeskRouteChildren {
+  DeskLibrarianOverviewRoute: typeof DeskLibrarianOverviewRoute
+  DeskStaffChangePasswordRoute: typeof DeskStaffChangePasswordRoute
+  DeskStaffHistoryRoute: typeof DeskStaffHistoryRoute
+  DeskStaffManualAccessRoute: typeof DeskStaffManualAccessRoute
+  DeskStaffOccupantsRoute: typeof DeskStaffOccupantsRoute
+  DeskStaffProfileRoute: typeof DeskStaffProfileRoute
+  DeskStaffVisitorsIdRoute: typeof DeskStaffVisitorsIdRoute
+  DeskStaffVisitorsIndexRoute: typeof DeskStaffVisitorsIndexRoute
+}
+
+const DeskRouteChildren: DeskRouteChildren = {
+  DeskLibrarianOverviewRoute: DeskLibrarianOverviewRoute,
+  DeskStaffChangePasswordRoute: DeskStaffChangePasswordRoute,
+  DeskStaffHistoryRoute: DeskStaffHistoryRoute,
+  DeskStaffManualAccessRoute: DeskStaffManualAccessRoute,
+  DeskStaffOccupantsRoute: DeskStaffOccupantsRoute,
+  DeskStaffProfileRoute: DeskStaffProfileRoute,
+  DeskStaffVisitorsIdRoute: DeskStaffVisitorsIdRoute,
+  DeskStaffVisitorsIndexRoute: DeskStaffVisitorsIndexRoute,
+}
+
+const DeskRouteWithChildren = DeskRoute._addFileChildren(DeskRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DeskRoute: DeskRouteWithChildren,
+  FirstPasswordChangeRoute: FirstPasswordChangeRoute,
+  ForbiddenRoute: ForbiddenRoute,
+  LoginRoute: LoginRoute,
+  SessionRoute: SessionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
