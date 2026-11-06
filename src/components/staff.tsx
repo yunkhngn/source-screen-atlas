@@ -13,16 +13,17 @@ export function OccupancyCard() {
   const pct = Math.round((open.length / cap) * 100);
   const near = pct >= warn;
   return (
-    <div className="relative overflow-hidden rounded-lg bg-yellow p-6 shadow-soft">
-      <div aria-hidden className="blob absolute -right-10 -top-12 size-44 bg-card/40" />
+    <div className="relative overflow-hidden animate-rise rounded-2xl bg-brand p-6 text-primary-foreground shadow-glow">
+      <div aria-hidden className="absolute -right-16 -top-20 size-64 rounded-full bg-card/15 blur-2xl" />
+      <div aria-hidden className="absolute -bottom-24 left-1/3 size-56 rounded-full bg-card/10 blur-2xl" />
       <div className="relative">
         <div className="text-sm font-medium">Đang trong thư viện</div>
         <div className="mt-2 flex items-end gap-2">
-          <span className="text-6xl font-semibold tracking-tight">{open.length}</span>
-          <span className="mb-2 text-xl text-foreground/60">/ {cap} chỗ</span>
+          <span className="font-display text-7xl font-bold tracking-tight tabular">{open.length}</span>
+          <span className="mb-2 text-xl opacity-70">/ {cap} chỗ</span>
         </div>
-        <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-card/60">
-          <div className="h-full rounded-full bg-primary transition-all" style={{ width: `${Math.min(100, pct)}%` }} />
+        <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-card/25">
+          <div className="h-full rounded-full bg-card transition-all" style={{ width: `${Math.min(100, pct)}%` }} />
         </div>
         <div className="mt-3 flex items-center justify-between text-sm">
           <span>{pct}% sức chứa</span>
