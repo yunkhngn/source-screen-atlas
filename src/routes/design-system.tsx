@@ -10,7 +10,7 @@ export const Route = createFileRoute("/design-system")({
   component: DS,
 });
 
-const colors = [["Xanh chính", "bg-primary", "#2563EB"], ["Nền", "bg-background", "#F4F5F7"], ["Trắng", "bg-card", "#FFFFFF"], ["Nhấn nhạt", "bg-accent", "#EEF3FF"], ["Thành công", "bg-mint", "#ECF8F1"], ["Lỗi", "bg-pink", "#FDF0EF"], ["Viền", "bg-border", "#E5E7EB"]];
+const colors = [["Cam đất", "bg-primary", "#EA580C"], ["Nền", "bg-background", "#111111"], ["Thẻ", "bg-card", "#1C1C1C"], ["Nhấn", "bg-accent", "#3A2A20"], ["Thành công", "bg-mint", "#ECF8F1"], ["Lỗi", "bg-pink", "#FDF0EF"], ["Viền", "bg-border", "#E5E7EB"]];
 
 function DS() {
   const [seg, setSeg] = useState("a");
