@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { cn } from "@/lib/utils";
 
 const btnVariants = {
-  primary: "bg-brand text-primary-foreground shadow-glow hover:brightness-110 hover:-translate-y-px",
+  primary: "bg-primary text-primary-foreground hover:bg-accent-foreground",
   accent: "bg-accent text-accent-foreground hover:bg-accent/70",
   outline: "border border-input bg-card text-foreground hover:bg-secondary",
   ghost: "text-foreground hover:bg-secondary",
@@ -18,7 +18,7 @@ export function Btn({ variant = "primary", size = "md", loading, className, chil
     <button
       {...p}
       disabled={p.disabled || loading}
-      className={cn("inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring", btnVariants[variant], btnSizes[size], className)}
+      className={cn("inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring", btnVariants[variant], btnSizes[size], className)}
     >
       {loading && <Loader2 className="size-4 animate-spin" />}
       {children}
@@ -27,7 +27,7 @@ export function Btn({ variant = "primary", size = "md", loading, className, chil
 }
 
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn("animate-rise rounded-2xl border border-border/70 bg-card/85 shadow-soft backdrop-blur transition-shadow hover:shadow-pop", className)}>{children}</div>;
+  return <div className={cn("animate-rise rounded-3xl border border-border/60 bg-card transition-shadow hover:shadow-pop", className)}>{children}</div>;
 }
 
 const tones = {
@@ -99,7 +99,7 @@ export function PageHeader({ title, crumbs, actions, sub }: { title: string; cru
     <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
       <div>
         {crumbs && <div className="mb-1 text-xs text-muted-foreground">{crumbs.join("  /  ")}</div>}
-        <h1 className="text-3xl font-bold tracking-tight"><span className="text-brand">{title}</span></h1>
+        <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
         {sub && <div className="mt-1 text-sm text-muted-foreground">{sub}</div>}
       </div>
       {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
@@ -107,13 +107,13 @@ export function PageHeader({ title, crumbs, actions, sub }: { title: string; cru
   );
 }
 
-const statBg = { white: "bg-card", yellow: "bg-brand text-primary-foreground shadow-glow border-transparent", mint: "bg-card", pink: "bg-card", sky: "bg-card" };
+const statBg = { white: "bg-card", yellow: "bg-stripes text-primary-foreground border-transparent", mint: "bg-card", pink: "bg-card", sky: "bg-card" };
 export function Stat({ label, value, sub, icon, color = "white" }: { label: string; value: ReactNode; sub?: ReactNode; icon?: ReactNode; color?: keyof typeof statBg }) {
   return (
     <div className={cn("animate-rise relative overflow-hidden rounded-2xl border border-border/70 p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-pop", statBg[color])}>
       <div className="flex items-center justify-between text-sm font-medium">
         <span>{label}</span>
-        {icon && <span className={cn("grid size-9 place-items-center rounded-xl text-primary-foreground", color === "yellow" ? "bg-card/20" : "bg-brand shadow-glow")}>{icon}</span>}
+        {icon && <span className={cn("grid size-9 place-items-center rounded-xl text-primary-foreground", color === "yellow" ? "bg-card/20" : "bg-primary")}>{icon}</span>}
       </div>
       <div className="mt-3 font-display text-3xl font-semibold tracking-tight tabular">{value}</div>
       {sub && <div className="mt-1 text-xs opacity-70">{sub}</div>}
@@ -151,7 +151,7 @@ export function Pager({ page, total, perPage, onPage }: { page: number; total: n
       <div className="flex items-center gap-1">
         <button aria-label="Trang trước" disabled={page <= 1} onClick={() => onPage(page - 1)} className="grid size-8 place-items-center rounded-lg hover:bg-secondary disabled:opacity-40"><ChevronLeft className="size-4" /></button>
         {Array.from({ length: pages }, (_, i) => i + 1).slice(Math.max(0, page - 3), Math.max(0, page - 3) + 5).map((p) => (
-          <button key={p} onClick={() => onPage(p)} className={cn("size-8 rounded-lg text-sm", p === page ? "bg-brand text-primary-foreground shadow-glow" : "hover:bg-secondary")}>{p}</button>
+          <button key={p} onClick={() => onPage(p)} className={cn("size-8 rounded-lg text-sm", p === page ? "bg-foreground text-background" : "hover:bg-secondary")}>{p}</button>
         ))}
         <button aria-label="Trang sau" disabled={page >= pages} onClick={() => onPage(page + 1)} className="grid size-8 place-items-center rounded-lg hover:bg-secondary disabled:opacity-40"><ChevronRight className="size-4" /></button>
       </div>
@@ -209,7 +209,7 @@ export function Avatar({ name, className }: { name: string; className?: string }
 export function Logo({ compact }: { compact?: boolean }) {
   return (
     <div className="flex items-center gap-2.5">
-      <span className="grid size-8 place-items-center rounded-xl bg-brand text-primary-foreground shadow-glow"><svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19V5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2"/><path d="M8 7h6"/></svg></span>
+      <span className="grid size-8 place-items-center rounded-full bg-primary text-primary-foreground"><svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19V5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2"/><path d="M8 7h6"/></svg></span>
       {!compact && (
         <div className="leading-tight">
           <div className="text-[15px] font-semibold">Cổng Thư Viện</div>

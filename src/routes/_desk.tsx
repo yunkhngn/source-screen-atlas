@@ -53,8 +53,8 @@ function DeskLayout() {
   const nav = NAV[me.role as "ADMIN" | "LIBRARIAN"];
 
   return (
-    <div className="flex min-h-screen w-full">
-      <aside className={cn("sticky top-0 flex h-screen shrink-0 flex-col border-r border-sidebar-border bg-sidebar/70 backdrop-blur-xl transition-all", collapsed ? "w-[76px]" : "w-[264px]")}>
+    <div className="flex min-h-screen w-full gap-3 p-3">
+      <aside className={cn("sticky top-3 flex h-[calc(100vh-1.5rem)] shrink-0 flex-col rounded-3xl bg-sidebar transition-all", collapsed ? "w-[76px]" : "w-[264px]")}>
         <div className="flex h-16 items-center justify-between px-5">
           <Logo compact={collapsed} />
         </div>
@@ -66,7 +66,7 @@ function DeskLayout() {
                 {g.items.map((it) => {
                   const active = path === it.to || path.startsWith(it.to + "/");
                   return (
-                    <Link key={it.to} to={it.to} title={it.label} className={cn("flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition", active ? "bg-brand font-medium text-primary-foreground shadow-glow" : "text-foreground/75 hover:bg-secondary hover:text-foreground", collapsed && "justify-center")}>
+                    <Link key={it.to} to={it.to} title={it.label} className={cn("relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition", active ? "font-semibold text-foreground before:absolute before:-left-3 before:top-1.5 before:bottom-1.5 before:w-1 before:rounded-r-full before:bg-primary [&>svg]:text-primary" : "text-muted-foreground hover:bg-secondary hover:text-foreground", collapsed && "justify-center")}>
                       <it.icon className="size-[18px] shrink-0" strokeWidth={1.75} />
                       {!collapsed && <span className="truncate">{it.label}</span>}
                     </Link>
@@ -82,7 +82,7 @@ function DeskLayout() {
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-border/60 bg-background/60 px-8 backdrop-blur-xl">
+        <header className="sticky top-3 z-10 flex h-16 items-center justify-between rounded-3xl bg-card px-6">
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <span className="relative flex size-2"><span className="absolute inset-0 animate-ping rounded-full bg-success opacity-60" /><span className="size-2 rounded-full bg-success" /></span> Đã kết nối · cập nhật lúc {fmtTime(lastUpdate)}
           </div>
@@ -103,7 +103,7 @@ function DeskLayout() {
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-        <main className="mx-auto w-full max-w-[1280px] flex-1 px-8 py-8">
+        <main className="mx-auto w-full max-w-[1280px] flex-1 px-5 py-7">
           <Outlet />
         </main>
       </div>
