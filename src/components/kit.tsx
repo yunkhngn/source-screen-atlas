@@ -209,7 +209,7 @@ export function Avatar({ name, className }: { name: string; className?: string }
 export function Logo({ compact }: { compact?: boolean }) {
   return (
     <div className="flex items-center gap-2.5">
-      <span className="grid size-8 place-items-center rounded-md bg-primary text-primary-foreground"><svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19V5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2"/><path d="M8 7h6"/></svg></span>
+      <span className="grid size-8 place-items-center rounded-xl bg-brand text-primary-foreground shadow-glow"><svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19V5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2"/><path d="M8 7h6"/></svg></span>
       {!compact && (
         <div className="leading-tight">
           <div className="text-[15px] font-semibold">Cổng Thư Viện</div>
