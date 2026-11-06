@@ -10,33 +10,289 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DeskRouteImport } from './routes/_desk'
+import { Route as FirstPasswordChangeRouteImport } from './routes/first-password-change'
+import { Route as ForbiddenRouteImport } from './routes/forbidden'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as SessionRouteImport } from './routes/session'
+import { Route as DeskAdminAccountsRouteImport } from './routes/_desk.admin.accounts'
+import { Route as DeskAdminAnalyticsRouteImport } from './routes/_desk.admin.analytics'
+import { Route as DeskAdminConfigRouteImport } from './routes/_desk.admin.config'
+import { Route as DeskAdminKiosksRouteImport } from './routes/_desk.admin.kiosks'
+import { Route as DeskAdminOverviewRouteImport } from './routes/_desk.admin.overview'
+import { Route as DeskAdminShiftsRouteImport } from './routes/_desk.admin.shifts'
+import { Route as DeskLibrarianOverviewRouteImport } from './routes/_desk.librarian.overview'
+import { Route as DeskLibrarianRulesRouteImport } from './routes/_desk.librarian.rules'
+import { Route as DeskLibrarianShiftsRouteImport } from './routes/_desk.librarian.shifts'
+import { Route as DeskStaffChangePasswordRouteImport } from './routes/_desk.staff.change-password'
+import { Route as DeskStaffHistoryRouteImport } from './routes/_desk.staff.history'
+import { Route as DeskStaffManualAccessRouteImport } from './routes/_desk.staff.manual-access'
+import { Route as DeskStaffOccupantsRouteImport } from './routes/_desk.staff.occupants'
+import { Route as DeskStaffProfileRouteImport } from './routes/_desk.staff.profile'
+import { Route as DeskStaffVisitorsIndexRouteImport } from './routes/_desk.staff.visitors.index'
+import { Route as DeskStaffVisitorsIdRouteImport } from './routes/_desk.staff.visitors.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeskRoute = DeskRouteImport.update({
+  id: '/_desk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FirstPasswordChangeRoute = FirstPasswordChangeRouteImport.update({
+  id: '/first-password-change',
+  path: '/first-password-change',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForbiddenRoute = ForbiddenRouteImport.update({
+  id: '/forbidden',
+  path: '/forbidden',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SessionRoute = SessionRouteImport.update({
+  id: '/session',
+  path: '/session',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeskAdminAccountsRoute = DeskAdminAccountsRouteImport.update({
+  id: '/admin/accounts',
+  path: '/admin/accounts',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskAdminAnalyticsRoute = DeskAdminAnalyticsRouteImport.update({
+  id: '/admin/analytics',
+  path: '/admin/analytics',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskAdminConfigRoute = DeskAdminConfigRouteImport.update({
+  id: '/admin/config',
+  path: '/admin/config',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskAdminKiosksRoute = DeskAdminKiosksRouteImport.update({
+  id: '/admin/kiosks',
+  path: '/admin/kiosks',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskAdminOverviewRoute = DeskAdminOverviewRouteImport.update({
+  id: '/admin/overview',
+  path: '/admin/overview',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskAdminShiftsRoute = DeskAdminShiftsRouteImport.update({
+  id: '/admin/shifts',
+  path: '/admin/shifts',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskLibrarianOverviewRoute = DeskLibrarianOverviewRouteImport.update({
+  id: '/librarian/overview',
+  path: '/librarian/overview',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskLibrarianRulesRoute = DeskLibrarianRulesRouteImport.update({
+  id: '/librarian/rules',
+  path: '/librarian/rules',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskLibrarianShiftsRoute = DeskLibrarianShiftsRouteImport.update({
+  id: '/librarian/shifts',
+  path: '/librarian/shifts',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffChangePasswordRoute = DeskStaffChangePasswordRouteImport.update({
+  id: '/staff/change-password',
+  path: '/staff/change-password',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffHistoryRoute = DeskStaffHistoryRouteImport.update({
+  id: '/staff/history',
+  path: '/staff/history',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffManualAccessRoute = DeskStaffManualAccessRouteImport.update({
+  id: '/staff/manual-access',
+  path: '/staff/manual-access',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffOccupantsRoute = DeskStaffOccupantsRouteImport.update({
+  id: '/staff/occupants',
+  path: '/staff/occupants',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffProfileRoute = DeskStaffProfileRouteImport.update({
+  id: '/staff/profile',
+  path: '/staff/profile',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffVisitorsIndexRoute = DeskStaffVisitorsIndexRouteImport.update({
+  id: '/staff/visitors/',
+  path: '/staff/visitors/',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskStaffVisitorsIdRoute = DeskStaffVisitorsIdRouteImport.update({
+  id: '/staff/visitors/$id',
+  path: '/staff/visitors/$id',
+  getParentRoute: () => DeskRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/first-password-change': typeof FirstPasswordChangeRoute
+  '/forbidden': typeof ForbiddenRoute
+  '/login': typeof LoginRoute
+  '/session': typeof SessionRoute
+  '/admin/accounts': typeof DeskAdminAccountsRoute
+  '/admin/analytics': typeof DeskAdminAnalyticsRoute
+  '/admin/config': typeof DeskAdminConfigRoute
+  '/admin/kiosks': typeof DeskAdminKiosksRoute
+  '/admin/overview': typeof DeskAdminOverviewRoute
+  '/admin/shifts': typeof DeskAdminShiftsRoute
+  '/librarian/overview': typeof DeskLibrarianOverviewRoute
+  '/librarian/rules': typeof DeskLibrarianRulesRoute
+  '/librarian/shifts': typeof DeskLibrarianShiftsRoute
+  '/staff/change-password': typeof DeskStaffChangePasswordRoute
+  '/staff/history': typeof DeskStaffHistoryRoute
+  '/staff/manual-access': typeof DeskStaffManualAccessRoute
+  '/staff/occupants': typeof DeskStaffOccupantsRoute
+  '/staff/profile': typeof DeskStaffProfileRoute
+  '/staff/visitors/$id': typeof DeskStaffVisitorsIdRoute
+  '/staff/visitors/': typeof DeskStaffVisitorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/first-password-change': typeof FirstPasswordChangeRoute
+  '/forbidden': typeof ForbiddenRoute
+  '/login': typeof LoginRoute
+  '/session': typeof SessionRoute
+  '/admin/accounts': typeof DeskAdminAccountsRoute
+  '/admin/analytics': typeof DeskAdminAnalyticsRoute
+  '/admin/config': typeof DeskAdminConfigRoute
+  '/admin/kiosks': typeof DeskAdminKiosksRoute
+  '/admin/overview': typeof DeskAdminOverviewRoute
+  '/admin/shifts': typeof DeskAdminShiftsRoute
+  '/librarian/overview': typeof DeskLibrarianOverviewRoute
+  '/librarian/rules': typeof DeskLibrarianRulesRoute
+  '/librarian/shifts': typeof DeskLibrarianShiftsRoute
+  '/staff/change-password': typeof DeskStaffChangePasswordRoute
+  '/staff/history': typeof DeskStaffHistoryRoute
+  '/staff/manual-access': typeof DeskStaffManualAccessRoute
+  '/staff/occupants': typeof DeskStaffOccupantsRoute
+  '/staff/profile': typeof DeskStaffProfileRoute
+  '/staff/visitors/$id': typeof DeskStaffVisitorsIdRoute
+  '/staff/visitors': typeof DeskStaffVisitorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_desk': typeof DeskRouteWithChildren
+  '/first-password-change': typeof FirstPasswordChangeRoute
+  '/forbidden': typeof ForbiddenRoute
+  '/login': typeof LoginRoute
+  '/session': typeof SessionRoute
+  '/_desk/admin/accounts': typeof DeskAdminAccountsRoute
+  '/_desk/admin/analytics': typeof DeskAdminAnalyticsRoute
+  '/_desk/admin/config': typeof DeskAdminConfigRoute
+  '/_desk/admin/kiosks': typeof DeskAdminKiosksRoute
+  '/_desk/admin/overview': typeof DeskAdminOverviewRoute
+  '/_desk/admin/shifts': typeof DeskAdminShiftsRoute
+  '/_desk/librarian/overview': typeof DeskLibrarianOverviewRoute
+  '/_desk/librarian/rules': typeof DeskLibrarianRulesRoute
+  '/_desk/librarian/shifts': typeof DeskLibrarianShiftsRoute
+  '/_desk/staff/change-password': typeof DeskStaffChangePasswordRoute
+  '/_desk/staff/history': typeof DeskStaffHistoryRoute
+  '/_desk/staff/manual-access': typeof DeskStaffManualAccessRoute
+  '/_desk/staff/occupants': typeof DeskStaffOccupantsRoute
+  '/_desk/staff/profile': typeof DeskStaffProfileRoute
+  '/_desk/staff/visitors/$id': typeof DeskStaffVisitorsIdRoute
+  '/_desk/staff/visitors/': typeof DeskStaffVisitorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/first-password-change'
+    | '/forbidden'
+    | '/login'
+    | '/session'
+    | '/admin/accounts'
+    | '/admin/analytics'
+    | '/admin/config'
+    | '/admin/kiosks'
+    | '/admin/overview'
+    | '/admin/shifts'
+    | '/librarian/overview'
+    | '/librarian/rules'
+    | '/librarian/shifts'
+    | '/staff/change-password'
+    | '/staff/history'
+    | '/staff/manual-access'
+    | '/staff/occupants'
+    | '/staff/profile'
+    | '/staff/visitors/$id'
+    | '/staff/visitors/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/first-password-change'
+    | '/forbidden'
+    | '/login'
+    | '/session'
+    | '/admin/accounts'
+    | '/admin/analytics'
+    | '/admin/config'
+    | '/admin/kiosks'
+    | '/admin/overview'
+    | '/admin/shifts'
+    | '/librarian/overview'
+    | '/librarian/rules'
+    | '/librarian/shifts'
+    | '/staff/change-password'
+    | '/staff/history'
+    | '/staff/manual-access'
+    | '/staff/occupants'
+    | '/staff/profile'
+    | '/staff/visitors/$id'
+    | '/staff/visitors'
+  id:
+    | '__root__'
+    | '/'
+    | '/_desk'
+    | '/first-password-change'
+    | '/forbidden'
+    | '/login'
+    | '/session'
+    | '/_desk/admin/accounts'
+    | '/_desk/admin/analytics'
+    | '/_desk/admin/config'
+    | '/_desk/admin/kiosks'
+    | '/_desk/admin/overview'
+    | '/_desk/admin/shifts'
+    | '/_desk/librarian/overview'
+    | '/_desk/librarian/rules'
+    | '/_desk/librarian/shifts'
+    | '/_desk/staff/change-password'
+    | '/_desk/staff/history'
+    | '/_desk/staff/manual-access'
+    | '/_desk/staff/occupants'
+    | '/_desk/staff/profile'
+    | '/_desk/staff/visitors/$id'
+    | '/_desk/staff/visitors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DeskRoute: typeof DeskRouteWithChildren
+  FirstPasswordChangeRoute: typeof FirstPasswordChangeRoute
+  ForbiddenRoute: typeof ForbiddenRoute
+  LoginRoute: typeof LoginRoute
+  SessionRoute: typeof SessionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +304,203 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_desk': {
+      id: '/_desk'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof DeskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/first-password-change': {
+      id: '/first-password-change'
+      path: '/first-password-change'
+      fullPath: '/first-password-change'
+      preLoaderRoute: typeof FirstPasswordChangeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forbidden': {
+      id: '/forbidden'
+      path: '/forbidden'
+      fullPath: '/forbidden'
+      preLoaderRoute: typeof ForbiddenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/session': {
+      id: '/session'
+      path: '/session'
+      fullPath: '/session'
+      preLoaderRoute: typeof SessionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_desk/admin/accounts': {
+      id: '/_desk/admin/accounts'
+      path: '/admin/accounts'
+      fullPath: '/admin/accounts'
+      preLoaderRoute: typeof DeskAdminAccountsRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/admin/analytics': {
+      id: '/_desk/admin/analytics'
+      path: '/admin/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof DeskAdminAnalyticsRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/admin/config': {
+      id: '/_desk/admin/config'
+      path: '/admin/config'
+      fullPath: '/admin/config'
+      preLoaderRoute: typeof DeskAdminConfigRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/admin/kiosks': {
+      id: '/_desk/admin/kiosks'
+      path: '/admin/kiosks'
+      fullPath: '/admin/kiosks'
+      preLoaderRoute: typeof DeskAdminKiosksRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/admin/overview': {
+      id: '/_desk/admin/overview'
+      path: '/admin/overview'
+      fullPath: '/admin/overview'
+      preLoaderRoute: typeof DeskAdminOverviewRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/admin/shifts': {
+      id: '/_desk/admin/shifts'
+      path: '/admin/shifts'
+      fullPath: '/admin/shifts'
+      preLoaderRoute: typeof DeskAdminShiftsRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/librarian/overview': {
+      id: '/_desk/librarian/overview'
+      path: '/librarian/overview'
+      fullPath: '/librarian/overview'
+      preLoaderRoute: typeof DeskLibrarianOverviewRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/librarian/rules': {
+      id: '/_desk/librarian/rules'
+      path: '/librarian/rules'
+      fullPath: '/librarian/rules'
+      preLoaderRoute: typeof DeskLibrarianRulesRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/librarian/shifts': {
+      id: '/_desk/librarian/shifts'
+      path: '/librarian/shifts'
+      fullPath: '/librarian/shifts'
+      preLoaderRoute: typeof DeskLibrarianShiftsRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/change-password': {
+      id: '/_desk/staff/change-password'
+      path: '/staff/change-password'
+      fullPath: '/staff/change-password'
+      preLoaderRoute: typeof DeskStaffChangePasswordRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/history': {
+      id: '/_desk/staff/history'
+      path: '/staff/history'
+      fullPath: '/staff/history'
+      preLoaderRoute: typeof DeskStaffHistoryRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/manual-access': {
+      id: '/_desk/staff/manual-access'
+      path: '/staff/manual-access'
+      fullPath: '/staff/manual-access'
+      preLoaderRoute: typeof DeskStaffManualAccessRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/occupants': {
+      id: '/_desk/staff/occupants'
+      path: '/staff/occupants'
+      fullPath: '/staff/occupants'
+      preLoaderRoute: typeof DeskStaffOccupantsRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/profile': {
+      id: '/_desk/staff/profile'
+      path: '/staff/profile'
+      fullPath: '/staff/profile'
+      preLoaderRoute: typeof DeskStaffProfileRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/visitors/': {
+      id: '/_desk/staff/visitors/'
+      path: '/staff/visitors'
+      fullPath: '/staff/visitors/'
+      preLoaderRoute: typeof DeskStaffVisitorsIndexRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/staff/visitors/$id': {
+      id: '/_desk/staff/visitors/$id'
+      path: '/staff/visitors/$id'
+      fullPath: '/staff/visitors/$id'
+      preLoaderRoute: typeof DeskStaffVisitorsIdRouteImport
+      parentRoute: typeof DeskRoute
+    }
   }
 }
 
+interface DeskRouteChildren {
+  DeskAdminAccountsRoute: typeof DeskAdminAccountsRoute
+  DeskAdminAnalyticsRoute: typeof DeskAdminAnalyticsRoute
+  DeskAdminConfigRoute: typeof DeskAdminConfigRoute
+  DeskAdminKiosksRoute: typeof DeskAdminKiosksRoute
+  DeskAdminOverviewRoute: typeof DeskAdminOverviewRoute
+  DeskAdminShiftsRoute: typeof DeskAdminShiftsRoute
+  DeskLibrarianOverviewRoute: typeof DeskLibrarianOverviewRoute
+  DeskLibrarianRulesRoute: typeof DeskLibrarianRulesRoute
+  DeskLibrarianShiftsRoute: typeof DeskLibrarianShiftsRoute
+  DeskStaffChangePasswordRoute: typeof DeskStaffChangePasswordRoute
+  DeskStaffHistoryRoute: typeof DeskStaffHistoryRoute
+  DeskStaffManualAccessRoute: typeof DeskStaffManualAccessRoute
+  DeskStaffOccupantsRoute: typeof DeskStaffOccupantsRoute
+  DeskStaffProfileRoute: typeof DeskStaffProfileRoute
+  DeskStaffVisitorsIdRoute: typeof DeskStaffVisitorsIdRoute
+  DeskStaffVisitorsIndexRoute: typeof DeskStaffVisitorsIndexRoute
+}
+
+const DeskRouteChildren: DeskRouteChildren = {
+  DeskAdminAccountsRoute: DeskAdminAccountsRoute,
+  DeskAdminAnalyticsRoute: DeskAdminAnalyticsRoute,
+  DeskAdminConfigRoute: DeskAdminConfigRoute,
+  DeskAdminKiosksRoute: DeskAdminKiosksRoute,
+  DeskAdminOverviewRoute: DeskAdminOverviewRoute,
+  DeskAdminShiftsRoute: DeskAdminShiftsRoute,
+  DeskLibrarianOverviewRoute: DeskLibrarianOverviewRoute,
+  DeskLibrarianRulesRoute: DeskLibrarianRulesRoute,
+  DeskLibrarianShiftsRoute: DeskLibrarianShiftsRoute,
+  DeskStaffChangePasswordRoute: DeskStaffChangePasswordRoute,
+  DeskStaffHistoryRoute: DeskStaffHistoryRoute,
+  DeskStaffManualAccessRoute: DeskStaffManualAccessRoute,
+  DeskStaffOccupantsRoute: DeskStaffOccupantsRoute,
+  DeskStaffProfileRoute: DeskStaffProfileRoute,
+  DeskStaffVisitorsIdRoute: DeskStaffVisitorsIdRoute,
+  DeskStaffVisitorsIndexRoute: DeskStaffVisitorsIndexRoute,
+}
+
+const DeskRouteWithChildren = DeskRoute._addFileChildren(DeskRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DeskRoute: DeskRouteWithChildren,
+  FirstPasswordChangeRoute: FirstPasswordChangeRoute,
+  ForbiddenRoute: ForbiddenRoute,
+  LoginRoute: LoginRoute,
+  SessionRoute: SessionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
