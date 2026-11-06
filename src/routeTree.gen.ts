@@ -11,11 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DeskRouteImport } from './routes/_desk'
+import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as FirstPasswordChangeRouteImport } from './routes/first-password-change'
 import { Route as ForbiddenRouteImport } from './routes/forbidden'
+import { Route as KioskRouteImport } from './routes/kiosk'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SessionRouteImport } from './routes/session'
 import { Route as StudentRouteImport } from './routes/student'
+import { Route as StudentFaceRouteImport } from './routes/student.face'
 import { Route as StudentHomeRouteImport } from './routes/student.home'
 import { Route as StudentQrRouteImport } from './routes/student.qr'
 import { Route as DeskAdminAccountsRouteImport } from './routes/_desk.admin.accounts'
@@ -49,6 +52,11 @@ const DeskRoute = DeskRouteImport.update({
   id: '/_desk',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesignSystemRoute = DesignSystemRouteImport.update({
+  id: '/design-system',
+  path: '/design-system',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FirstPasswordChangeRoute = FirstPasswordChangeRouteImport.update({
   id: '/first-password-change',
   path: '/first-password-change',
@@ -57,6 +65,11 @@ const FirstPasswordChangeRoute = FirstPasswordChangeRouteImport.update({
 const ForbiddenRoute = ForbiddenRouteImport.update({
   id: '/forbidden',
   path: '/forbidden',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KioskRoute = KioskRouteImport.update({
+  id: '/kiosk',
+  path: '/kiosk',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -73,6 +86,11 @@ const StudentRoute = StudentRouteImport.update({
   id: '/student',
   path: '/student',
   getParentRoute: () => rootRouteImport,
+} as any)
+const StudentFaceRoute = StudentFaceRouteImport.update({
+  id: '/face',
+  path: '/face',
+  getParentRoute: () => StudentRoute,
 } as any)
 const StudentHomeRoute = StudentHomeRouteImport.update({
   id: '/home',
@@ -192,11 +210,14 @@ const DeskStaffVisitorsIdRoute = DeskStaffVisitorsIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/design-system': typeof DesignSystemRoute
   '/first-password-change': typeof FirstPasswordChangeRoute
   '/forbidden': typeof ForbiddenRoute
+  '/kiosk': typeof KioskRoute
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
   '/student': typeof StudentRouteWithChildren
+  '/student/face': typeof StudentFaceRoute
   '/student/home': typeof StudentHomeRoute
   '/student/qr': typeof StudentQrRoute
   '/admin/accounts': typeof DeskAdminAccountsRoute
@@ -223,11 +244,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/design-system': typeof DesignSystemRoute
   '/first-password-change': typeof FirstPasswordChangeRoute
   '/forbidden': typeof ForbiddenRoute
+  '/kiosk': typeof KioskRoute
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
   '/student': typeof StudentRouteWithChildren
+  '/student/face': typeof StudentFaceRoute
   '/student/home': typeof StudentHomeRoute
   '/student/qr': typeof StudentQrRoute
   '/admin/accounts': typeof DeskAdminAccountsRoute
@@ -256,11 +280,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_desk': typeof DeskRouteWithChildren
+  '/design-system': typeof DesignSystemRoute
   '/first-password-change': typeof FirstPasswordChangeRoute
   '/forbidden': typeof ForbiddenRoute
+  '/kiosk': typeof KioskRoute
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
   '/student': typeof StudentRouteWithChildren
+  '/student/face': typeof StudentFaceRoute
   '/student/home': typeof StudentHomeRoute
   '/student/qr': typeof StudentQrRoute
   '/_desk/admin/accounts': typeof DeskAdminAccountsRoute
@@ -289,11 +316,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/design-system'
     | '/first-password-change'
     | '/forbidden'
+    | '/kiosk'
     | '/login'
     | '/session'
     | '/student'
+    | '/student/face'
     | '/student/home'
     | '/student/qr'
     | '/admin/accounts'
@@ -320,11 +350,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/design-system'
     | '/first-password-change'
     | '/forbidden'
+    | '/kiosk'
     | '/login'
     | '/session'
     | '/student'
+    | '/student/face'
     | '/student/home'
     | '/student/qr'
     | '/admin/accounts'
@@ -352,11 +385,14 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_desk'
+    | '/design-system'
     | '/first-password-change'
     | '/forbidden'
+    | '/kiosk'
     | '/login'
     | '/session'
     | '/student'
+    | '/student/face'
     | '/student/home'
     | '/student/qr'
     | '/_desk/admin/accounts'
@@ -385,8 +421,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DeskRoute: typeof DeskRouteWithChildren
+  DesignSystemRoute: typeof DesignSystemRoute
   FirstPasswordChangeRoute: typeof FirstPasswordChangeRoute
   ForbiddenRoute: typeof ForbiddenRoute
+  KioskRoute: typeof KioskRoute
   LoginRoute: typeof LoginRoute
   SessionRoute: typeof SessionRoute
   StudentRoute: typeof StudentRouteWithChildren
@@ -408,6 +446,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeskRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/design-system': {
+      id: '/design-system'
+      path: '/design-system'
+      fullPath: '/design-system'
+      preLoaderRoute: typeof DesignSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/first-password-change': {
       id: '/first-password-change'
       path: '/first-password-change'
@@ -420,6 +465,13 @@ declare module '@tanstack/react-router' {
       path: '/forbidden'
       fullPath: '/forbidden'
       preLoaderRoute: typeof ForbiddenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kiosk': {
+      id: '/kiosk'
+      path: '/kiosk'
+      fullPath: '/kiosk'
+      preLoaderRoute: typeof KioskRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -442,6 +494,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/student'
       preLoaderRoute: typeof StudentRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/student/face': {
+      id: '/student/face'
+      path: '/face'
+      fullPath: '/student/face'
+      preLoaderRoute: typeof StudentFaceRouteImport
+      parentRoute: typeof StudentRoute
     }
     '/student/home': {
       id: '/student/home'
@@ -648,6 +707,7 @@ const DeskRouteChildren: DeskRouteChildren = {
 const DeskRouteWithChildren = DeskRoute._addFileChildren(DeskRouteChildren)
 
 interface StudentRouteChildren {
+  StudentFaceRoute: typeof StudentFaceRoute
   StudentHomeRoute: typeof StudentHomeRoute
   StudentQrRoute: typeof StudentQrRoute
   StudentAccountPasswordRoute: typeof StudentAccountPasswordRoute
@@ -658,6 +718,7 @@ interface StudentRouteChildren {
 }
 
 const StudentRouteChildren: StudentRouteChildren = {
+  StudentFaceRoute: StudentFaceRoute,
   StudentHomeRoute: StudentHomeRoute,
   StudentQrRoute: StudentQrRoute,
   StudentAccountPasswordRoute: StudentAccountPasswordRoute,
@@ -673,8 +734,10 @@ const StudentRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DeskRoute: DeskRouteWithChildren,
+  DesignSystemRoute: DesignSystemRoute,
   FirstPasswordChangeRoute: FirstPasswordChangeRoute,
   ForbiddenRoute: ForbiddenRoute,
+  KioskRoute: KioskRoute,
   LoginRoute: LoginRoute,
   SessionRoute: SessionRoute,
   StudentRoute: StudentRouteWithChildren,
