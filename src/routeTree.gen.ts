@@ -15,6 +15,9 @@ import { Route as FirstPasswordChangeRouteImport } from './routes/first-password
 import { Route as ForbiddenRouteImport } from './routes/forbidden'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SessionRouteImport } from './routes/session'
+import { Route as StudentRouteImport } from './routes/student'
+import { Route as StudentHomeRouteImport } from './routes/student.home'
+import { Route as StudentQrRouteImport } from './routes/student.qr'
 import { Route as DeskAdminAccountsRouteImport } from './routes/_desk.admin.accounts'
 import { Route as DeskAdminAnalyticsRouteImport } from './routes/_desk.admin.analytics'
 import { Route as DeskAdminConfigRouteImport } from './routes/_desk.admin.config'
@@ -29,6 +32,11 @@ import { Route as DeskStaffHistoryRouteImport } from './routes/_desk.staff.histo
 import { Route as DeskStaffManualAccessRouteImport } from './routes/_desk.staff.manual-access'
 import { Route as DeskStaffOccupantsRouteImport } from './routes/_desk.staff.occupants'
 import { Route as DeskStaffProfileRouteImport } from './routes/_desk.staff.profile'
+import { Route as StudentAccountIndexRouteImport } from './routes/student.account.index'
+import { Route as StudentAccountPasswordRouteImport } from './routes/student.account.password'
+import { Route as StudentAccountRulesRouteImport } from './routes/student.account.rules'
+import { Route as StudentHistoryIndexRouteImport } from './routes/student.history.index'
+import { Route as StudentHistorySessionIdRouteImport } from './routes/student.history.$sessionId'
 import { Route as DeskStaffVisitorsIndexRouteImport } from './routes/_desk.staff.visitors.index'
 import { Route as DeskStaffVisitorsIdRouteImport } from './routes/_desk.staff.visitors.$id'
 
@@ -60,6 +68,21 @@ const SessionRoute = SessionRouteImport.update({
   id: '/session',
   path: '/session',
   getParentRoute: () => rootRouteImport,
+} as any)
+const StudentRoute = StudentRouteImport.update({
+  id: '/student',
+  path: '/student',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentHomeRoute = StudentHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentQrRoute = StudentQrRouteImport.update({
+  id: '/qr',
+  path: '/qr',
+  getParentRoute: () => StudentRoute,
 } as any)
 const DeskAdminAccountsRoute = DeskAdminAccountsRouteImport.update({
   id: '/admin/accounts',
@@ -131,6 +154,31 @@ const DeskStaffProfileRoute = DeskStaffProfileRouteImport.update({
   path: '/staff/profile',
   getParentRoute: () => DeskRoute,
 } as any)
+const StudentAccountIndexRoute = StudentAccountIndexRouteImport.update({
+  id: '/account/',
+  path: '/account/',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentAccountPasswordRoute = StudentAccountPasswordRouteImport.update({
+  id: '/account/password',
+  path: '/account/password',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentAccountRulesRoute = StudentAccountRulesRouteImport.update({
+  id: '/account/rules',
+  path: '/account/rules',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentHistoryIndexRoute = StudentHistoryIndexRouteImport.update({
+  id: '/history/',
+  path: '/history/',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentHistorySessionIdRoute = StudentHistorySessionIdRouteImport.update({
+  id: '/history/$sessionId',
+  path: '/history/$sessionId',
+  getParentRoute: () => StudentRoute,
+} as any)
 const DeskStaffVisitorsIndexRoute = DeskStaffVisitorsIndexRouteImport.update({
   id: '/staff/visitors/',
   path: '/staff/visitors/',
@@ -148,6 +196,9 @@ export interface FileRoutesByFullPath {
   '/forbidden': typeof ForbiddenRoute
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
+  '/student': typeof StudentRouteWithChildren
+  '/student/home': typeof StudentHomeRoute
+  '/student/qr': typeof StudentQrRoute
   '/admin/accounts': typeof DeskAdminAccountsRoute
   '/admin/analytics': typeof DeskAdminAnalyticsRoute
   '/admin/config': typeof DeskAdminConfigRoute
@@ -162,6 +213,11 @@ export interface FileRoutesByFullPath {
   '/staff/manual-access': typeof DeskStaffManualAccessRoute
   '/staff/occupants': typeof DeskStaffOccupantsRoute
   '/staff/profile': typeof DeskStaffProfileRoute
+  '/student/account/password': typeof StudentAccountPasswordRoute
+  '/student/account/rules': typeof StudentAccountRulesRoute
+  '/student/history/$sessionId': typeof StudentHistorySessionIdRoute
+  '/student/account/': typeof StudentAccountIndexRoute
+  '/student/history/': typeof StudentHistoryIndexRoute
   '/staff/visitors/$id': typeof DeskStaffVisitorsIdRoute
   '/staff/visitors/': typeof DeskStaffVisitorsIndexRoute
 }
@@ -171,6 +227,9 @@ export interface FileRoutesByTo {
   '/forbidden': typeof ForbiddenRoute
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
+  '/student': typeof StudentRouteWithChildren
+  '/student/home': typeof StudentHomeRoute
+  '/student/qr': typeof StudentQrRoute
   '/admin/accounts': typeof DeskAdminAccountsRoute
   '/admin/analytics': typeof DeskAdminAnalyticsRoute
   '/admin/config': typeof DeskAdminConfigRoute
@@ -185,6 +244,11 @@ export interface FileRoutesByTo {
   '/staff/manual-access': typeof DeskStaffManualAccessRoute
   '/staff/occupants': typeof DeskStaffOccupantsRoute
   '/staff/profile': typeof DeskStaffProfileRoute
+  '/student/account/password': typeof StudentAccountPasswordRoute
+  '/student/account/rules': typeof StudentAccountRulesRoute
+  '/student/history/$sessionId': typeof StudentHistorySessionIdRoute
+  '/student/account': typeof StudentAccountIndexRoute
+  '/student/history': typeof StudentHistoryIndexRoute
   '/staff/visitors/$id': typeof DeskStaffVisitorsIdRoute
   '/staff/visitors': typeof DeskStaffVisitorsIndexRoute
 }
@@ -196,6 +260,9 @@ export interface FileRoutesById {
   '/forbidden': typeof ForbiddenRoute
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
+  '/student': typeof StudentRouteWithChildren
+  '/student/home': typeof StudentHomeRoute
+  '/student/qr': typeof StudentQrRoute
   '/_desk/admin/accounts': typeof DeskAdminAccountsRoute
   '/_desk/admin/analytics': typeof DeskAdminAnalyticsRoute
   '/_desk/admin/config': typeof DeskAdminConfigRoute
@@ -210,6 +277,11 @@ export interface FileRoutesById {
   '/_desk/staff/manual-access': typeof DeskStaffManualAccessRoute
   '/_desk/staff/occupants': typeof DeskStaffOccupantsRoute
   '/_desk/staff/profile': typeof DeskStaffProfileRoute
+  '/student/account/password': typeof StudentAccountPasswordRoute
+  '/student/account/rules': typeof StudentAccountRulesRoute
+  '/student/history/$sessionId': typeof StudentHistorySessionIdRoute
+  '/student/account/': typeof StudentAccountIndexRoute
+  '/student/history/': typeof StudentHistoryIndexRoute
   '/_desk/staff/visitors/$id': typeof DeskStaffVisitorsIdRoute
   '/_desk/staff/visitors/': typeof DeskStaffVisitorsIndexRoute
 }
@@ -221,6 +293,9 @@ export interface FileRouteTypes {
     | '/forbidden'
     | '/login'
     | '/session'
+    | '/student'
+    | '/student/home'
+    | '/student/qr'
     | '/admin/accounts'
     | '/admin/analytics'
     | '/admin/config'
@@ -235,6 +310,11 @@ export interface FileRouteTypes {
     | '/staff/manual-access'
     | '/staff/occupants'
     | '/staff/profile'
+    | '/student/account/password'
+    | '/student/account/rules'
+    | '/student/history/$sessionId'
+    | '/student/account/'
+    | '/student/history/'
     | '/staff/visitors/$id'
     | '/staff/visitors/'
   fileRoutesByTo: FileRoutesByTo
@@ -244,6 +324,9 @@ export interface FileRouteTypes {
     | '/forbidden'
     | '/login'
     | '/session'
+    | '/student'
+    | '/student/home'
+    | '/student/qr'
     | '/admin/accounts'
     | '/admin/analytics'
     | '/admin/config'
@@ -258,6 +341,11 @@ export interface FileRouteTypes {
     | '/staff/manual-access'
     | '/staff/occupants'
     | '/staff/profile'
+    | '/student/account/password'
+    | '/student/account/rules'
+    | '/student/history/$sessionId'
+    | '/student/account'
+    | '/student/history'
     | '/staff/visitors/$id'
     | '/staff/visitors'
   id:
@@ -268,6 +356,9 @@ export interface FileRouteTypes {
     | '/forbidden'
     | '/login'
     | '/session'
+    | '/student'
+    | '/student/home'
+    | '/student/qr'
     | '/_desk/admin/accounts'
     | '/_desk/admin/analytics'
     | '/_desk/admin/config'
@@ -282,6 +373,11 @@ export interface FileRouteTypes {
     | '/_desk/staff/manual-access'
     | '/_desk/staff/occupants'
     | '/_desk/staff/profile'
+    | '/student/account/password'
+    | '/student/account/rules'
+    | '/student/history/$sessionId'
+    | '/student/account/'
+    | '/student/history/'
     | '/_desk/staff/visitors/$id'
     | '/_desk/staff/visitors/'
   fileRoutesById: FileRoutesById
@@ -293,6 +389,7 @@ export interface RootRouteChildren {
   ForbiddenRoute: typeof ForbiddenRoute
   LoginRoute: typeof LoginRoute
   SessionRoute: typeof SessionRoute
+  StudentRoute: typeof StudentRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -338,6 +435,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/session'
       preLoaderRoute: typeof SessionRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/student': {
+      id: '/student'
+      path: '/student'
+      fullPath: '/student'
+      preLoaderRoute: typeof StudentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student/home': {
+      id: '/student/home'
+      path: '/home'
+      fullPath: '/student/home'
+      preLoaderRoute: typeof StudentHomeRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/qr': {
+      id: '/student/qr'
+      path: '/qr'
+      fullPath: '/student/qr'
+      preLoaderRoute: typeof StudentQrRouteImport
+      parentRoute: typeof StudentRoute
     }
     '/_desk/admin/accounts': {
       id: '/_desk/admin/accounts'
@@ -437,6 +555,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeskStaffProfileRouteImport
       parentRoute: typeof DeskRoute
     }
+    '/student/account/': {
+      id: '/student/account/'
+      path: '/account'
+      fullPath: '/student/account/'
+      preLoaderRoute: typeof StudentAccountIndexRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/account/password': {
+      id: '/student/account/password'
+      path: '/account/password'
+      fullPath: '/student/account/password'
+      preLoaderRoute: typeof StudentAccountPasswordRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/account/rules': {
+      id: '/student/account/rules'
+      path: '/account/rules'
+      fullPath: '/student/account/rules'
+      preLoaderRoute: typeof StudentAccountRulesRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/history/': {
+      id: '/student/history/'
+      path: '/history'
+      fullPath: '/student/history/'
+      preLoaderRoute: typeof StudentHistoryIndexRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/history/$sessionId': {
+      id: '/student/history/$sessionId'
+      path: '/history/$sessionId'
+      fullPath: '/student/history/$sessionId'
+      preLoaderRoute: typeof StudentHistorySessionIdRouteImport
+      parentRoute: typeof StudentRoute
+    }
     '/_desk/staff/visitors/': {
       id: '/_desk/staff/visitors/'
       path: '/staff/visitors'
@@ -494,6 +647,29 @@ const DeskRouteChildren: DeskRouteChildren = {
 
 const DeskRouteWithChildren = DeskRoute._addFileChildren(DeskRouteChildren)
 
+interface StudentRouteChildren {
+  StudentHomeRoute: typeof StudentHomeRoute
+  StudentQrRoute: typeof StudentQrRoute
+  StudentAccountPasswordRoute: typeof StudentAccountPasswordRoute
+  StudentAccountRulesRoute: typeof StudentAccountRulesRoute
+  StudentHistorySessionIdRoute: typeof StudentHistorySessionIdRoute
+  StudentAccountIndexRoute: typeof StudentAccountIndexRoute
+  StudentHistoryIndexRoute: typeof StudentHistoryIndexRoute
+}
+
+const StudentRouteChildren: StudentRouteChildren = {
+  StudentHomeRoute: StudentHomeRoute,
+  StudentQrRoute: StudentQrRoute,
+  StudentAccountPasswordRoute: StudentAccountPasswordRoute,
+  StudentAccountRulesRoute: StudentAccountRulesRoute,
+  StudentHistorySessionIdRoute: StudentHistorySessionIdRoute,
+  StudentAccountIndexRoute: StudentAccountIndexRoute,
+  StudentHistoryIndexRoute: StudentHistoryIndexRoute,
+}
+
+const StudentRouteWithChildren =
+  StudentRoute._addFileChildren(StudentRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DeskRoute: DeskRouteWithChildren,
@@ -501,6 +677,7 @@ const rootRouteChildren: RootRouteChildren = {
   ForbiddenRoute: ForbiddenRoute,
   LoginRoute: LoginRoute,
   SessionRoute: SessionRoute,
+  StudentRoute: StudentRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
