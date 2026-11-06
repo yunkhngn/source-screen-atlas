@@ -11,14 +11,14 @@ const btnVariants = {
   danger: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
   soft: "bg-secondary text-foreground hover:bg-surface",
 };
-const btnSizes = { sm: "h-8 px-3 text-xs", md: "h-9 px-3.5 text-sm", lg: "h-12 px-6 text-base", xl: "h-16 px-8 text-lg" };
+const btnSizes = { sm: "h-8 px-3 text-xs", md: "h-10 px-4 text-sm", lg: "h-12 px-6 text-base", xl: "h-16 px-8 text-lg" };
 
 export function Btn({ variant = "primary", size = "md", loading, className, children, ...p }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: keyof typeof btnVariants; size?: keyof typeof btnSizes; loading?: boolean }) {
   return (
     <button
       {...p}
       disabled={p.disabled || loading}
-      className={cn("inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring", btnVariants[variant], btnSizes[size], className)}
+      className={cn("inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring", btnVariants[variant], btnSizes[size], className)}
     >
       {loading && <Loader2 className="size-4 animate-spin" />}
       {children}
@@ -27,7 +27,7 @@ export function Btn({ variant = "primary", size = "md", loading, className, chil
 }
 
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn("rounded-lg border border-border bg-card shadow-soft", className)}>{children}</div>;
+  return <div className={cn("rounded-xl border border-border/70 bg-card shadow-soft transition-shadow", className)}>{children}</div>;
 }
 
 const tones = {
@@ -41,7 +41,7 @@ const tones = {
 export type Tone = keyof typeof tones;
 export function Badge({ tone = "neutral", children, dot = true }: { tone?: Tone; children: ReactNode; dot?: boolean }) {
   return (
-    <span className={cn("inline-flex items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-0.5 text-xs font-medium", tones[tone])}>
+    <span className={cn("inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-medium", tones[tone])}>
       {dot && <span className="size-1.5 rounded-full bg-current" />}
       {children}
     </span>
@@ -59,7 +59,7 @@ export function Field({ label, error, hint, children }: { label: string; error?:
 }
 
 export function Input({ className, ...p }: InputHTMLAttributes<HTMLInputElement>) {
-  return <input {...p} className={cn("h-9 w-full rounded-md border border-input bg-card px-3.5 text-sm outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/20 disabled:bg-secondary", className)} />;
+  return <input {...p} className={cn("h-10 w-full rounded-lg border border-input bg-card px-3.5 text-sm outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/20 disabled:bg-secondary", className)} />;
 }
 
 export function PasswordInput(p: InputHTMLAttributes<HTMLInputElement>) {
@@ -75,7 +75,7 @@ export function PasswordInput(p: InputHTMLAttributes<HTMLInputElement>) {
 }
 
 export function Select({ className, children, ...p }: React.SelectHTMLAttributes<HTMLSelectElement>) {
-  return <select {...p} className={cn("h-9 w-full rounded-md border border-input bg-card px-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-ring/20", className)}>{children}</select>;
+  return <select {...p} className={cn("h-10 w-full rounded-lg border border-input bg-card px-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-ring/20", className)}>{children}</select>;
 }
 
 export function Textarea(p: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
@@ -110,7 +110,7 @@ export function PageHeader({ title, crumbs, actions, sub }: { title: string; cru
 const statBg = { white: "bg-card", yellow: "bg-card", mint: "bg-card", pink: "bg-card", sky: "bg-card" };
 export function Stat({ label, value, sub, icon, color = "white" }: { label: string; value: ReactNode; sub?: ReactNode; icon?: ReactNode; color?: keyof typeof statBg }) {
   return (
-    <div className={cn("rounded-lg border border-border p-5 shadow-soft", statBg[color])}>
+    <div className={cn("rounded-xl border border-border/70 p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-pop", statBg[color])}>
       <div className="flex items-center justify-between text-sm font-medium">
         <span>{label}</span>
         {icon && <span className="grid size-9 place-items-center rounded-md bg-accent text-accent-foreground">{icon}</span>}
