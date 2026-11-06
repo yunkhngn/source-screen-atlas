@@ -13,7 +13,7 @@ export const Route = createFileRoute("/student/home")({
 
 function Home() {
   const me = useMe()!;
-  const sessions = useApp((s) => s.sessions.filter((x) => x.subjectId === me.id));
+  const sessions = useApp((s) => s.sessions).filter((x) => x.subjectId === me.id);
   const enr = useApp((s) => s.enrollment);
   const open = sessions.find((s) => !s.exitAt);
   const last = sessions[0];

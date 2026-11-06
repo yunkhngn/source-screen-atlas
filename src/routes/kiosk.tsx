@@ -42,7 +42,9 @@ function KioskPage() {
   const process = (method: "FACE" | "QR") => {
     // Pick a random student to simulate an identity match.
     const st = accounts.filter((a) => a.role === "STUDENT" && a.status === "ACTIVE");
-    const who = st[Math.floor(Math.random() * st.length)];
+    const isIn = (id: string) => sessions.some((s) => s.subjectId === id && !s.exitAt);
+    const pool = device!.mode === "ENTRY" ? st.filter((a) => !isIn(a.id)) : device!.mode === "EXIT" ? st.filter((a) => isIn(a.id)) : st;
+    const who = (pool.length ? pool : st)[Math.floor(Math.random() * (pool.length || st.length))];
     const inside = sessions.some((s) => s.subjectId === who.id && !s.exitAt);
     const dir: "IN" | "OUT" = device!.mode === "ENTRY" ? "IN" : device!.mode === "EXIT" ? "OUT" : inside ? "OUT" : "IN";
     const err = dir === "IN" ? recordEntry({ subjectType: "STUDENT", subjectId: who.id, method, actor: device!.code }) : recordExit(who.id, method, device!.code);

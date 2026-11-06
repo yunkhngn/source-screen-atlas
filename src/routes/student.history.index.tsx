@@ -14,7 +14,7 @@ export const Route = createFileRoute("/student/history/")({
 
 function StuHistory() {
   const me = useMe()!;
-  const all = useApp((s) => s.sessions.filter((x) => x.subjectId === me.id));
+  const all = useApp((s) => s.sessions).filter((x) => x.subjectId === me.id);
   const [range, setRange] = useState<"7" | "30" | "90">("30");
   const [shown, setShown] = useState(6);
   const list = all.filter((s) => s.entryAt >= Date.now() - Number(range) * 86400000);
