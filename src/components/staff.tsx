@@ -13,7 +13,7 @@ export function OccupancyCard() {
   const pct = Math.round((open.length / cap) * 100);
   const near = pct >= warn;
   return (
-    <div className="relative overflow-hidden animate-rise rounded-2xl bg-brand p-6 text-primary-foreground shadow-glow">
+    <div className="relative overflow-hidden animate-rise rounded-3xl bg-brand p-6 text-primary-foreground">
       <div aria-hidden className="absolute -right-16 -top-20 size-64 rounded-full bg-card/15 blur-2xl" />
       <div aria-hidden className="absolute -bottom-24 left-1/3 size-56 rounded-full bg-card/10 blur-2xl" />
       <div className="relative">
