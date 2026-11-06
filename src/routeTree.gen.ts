@@ -16,8 +16,11 @@ import { Route as ForbiddenRouteImport } from './routes/forbidden'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SessionRouteImport } from './routes/session'
 import { Route as DeskAdminAccountsRouteImport } from './routes/_desk.admin.accounts'
+import { Route as DeskAdminAnalyticsRouteImport } from './routes/_desk.admin.analytics'
+import { Route as DeskAdminConfigRouteImport } from './routes/_desk.admin.config'
 import { Route as DeskAdminKiosksRouteImport } from './routes/_desk.admin.kiosks'
 import { Route as DeskAdminOverviewRouteImport } from './routes/_desk.admin.overview'
+import { Route as DeskAdminShiftsRouteImport } from './routes/_desk.admin.shifts'
 import { Route as DeskLibrarianOverviewRouteImport } from './routes/_desk.librarian.overview'
 import { Route as DeskLibrarianRulesRouteImport } from './routes/_desk.librarian.rules'
 import { Route as DeskLibrarianShiftsRouteImport } from './routes/_desk.librarian.shifts'
@@ -63,6 +66,16 @@ const DeskAdminAccountsRoute = DeskAdminAccountsRouteImport.update({
   path: '/admin/accounts',
   getParentRoute: () => DeskRoute,
 } as any)
+const DeskAdminAnalyticsRoute = DeskAdminAnalyticsRouteImport.update({
+  id: '/admin/analytics',
+  path: '/admin/analytics',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskAdminConfigRoute = DeskAdminConfigRouteImport.update({
+  id: '/admin/config',
+  path: '/admin/config',
+  getParentRoute: () => DeskRoute,
+} as any)
 const DeskAdminKiosksRoute = DeskAdminKiosksRouteImport.update({
   id: '/admin/kiosks',
   path: '/admin/kiosks',
@@ -71,6 +84,11 @@ const DeskAdminKiosksRoute = DeskAdminKiosksRouteImport.update({
 const DeskAdminOverviewRoute = DeskAdminOverviewRouteImport.update({
   id: '/admin/overview',
   path: '/admin/overview',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskAdminShiftsRoute = DeskAdminShiftsRouteImport.update({
+  id: '/admin/shifts',
+  path: '/admin/shifts',
   getParentRoute: () => DeskRoute,
 } as any)
 const DeskLibrarianOverviewRoute = DeskLibrarianOverviewRouteImport.update({
@@ -131,8 +149,11 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
   '/admin/accounts': typeof DeskAdminAccountsRoute
+  '/admin/analytics': typeof DeskAdminAnalyticsRoute
+  '/admin/config': typeof DeskAdminConfigRoute
   '/admin/kiosks': typeof DeskAdminKiosksRoute
   '/admin/overview': typeof DeskAdminOverviewRoute
+  '/admin/shifts': typeof DeskAdminShiftsRoute
   '/librarian/overview': typeof DeskLibrarianOverviewRoute
   '/librarian/rules': typeof DeskLibrarianRulesRoute
   '/librarian/shifts': typeof DeskLibrarianShiftsRoute
@@ -151,8 +172,11 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
   '/admin/accounts': typeof DeskAdminAccountsRoute
+  '/admin/analytics': typeof DeskAdminAnalyticsRoute
+  '/admin/config': typeof DeskAdminConfigRoute
   '/admin/kiosks': typeof DeskAdminKiosksRoute
   '/admin/overview': typeof DeskAdminOverviewRoute
+  '/admin/shifts': typeof DeskAdminShiftsRoute
   '/librarian/overview': typeof DeskLibrarianOverviewRoute
   '/librarian/rules': typeof DeskLibrarianRulesRoute
   '/librarian/shifts': typeof DeskLibrarianShiftsRoute
@@ -173,8 +197,11 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
   '/_desk/admin/accounts': typeof DeskAdminAccountsRoute
+  '/_desk/admin/analytics': typeof DeskAdminAnalyticsRoute
+  '/_desk/admin/config': typeof DeskAdminConfigRoute
   '/_desk/admin/kiosks': typeof DeskAdminKiosksRoute
   '/_desk/admin/overview': typeof DeskAdminOverviewRoute
+  '/_desk/admin/shifts': typeof DeskAdminShiftsRoute
   '/_desk/librarian/overview': typeof DeskLibrarianOverviewRoute
   '/_desk/librarian/rules': typeof DeskLibrarianRulesRoute
   '/_desk/librarian/shifts': typeof DeskLibrarianShiftsRoute
@@ -195,8 +222,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/session'
     | '/admin/accounts'
+    | '/admin/analytics'
+    | '/admin/config'
     | '/admin/kiosks'
     | '/admin/overview'
+    | '/admin/shifts'
     | '/librarian/overview'
     | '/librarian/rules'
     | '/librarian/shifts'
@@ -215,8 +245,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/session'
     | '/admin/accounts'
+    | '/admin/analytics'
+    | '/admin/config'
     | '/admin/kiosks'
     | '/admin/overview'
+    | '/admin/shifts'
     | '/librarian/overview'
     | '/librarian/rules'
     | '/librarian/shifts'
@@ -236,8 +269,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/session'
     | '/_desk/admin/accounts'
+    | '/_desk/admin/analytics'
+    | '/_desk/admin/config'
     | '/_desk/admin/kiosks'
     | '/_desk/admin/overview'
+    | '/_desk/admin/shifts'
     | '/_desk/librarian/overview'
     | '/_desk/librarian/rules'
     | '/_desk/librarian/shifts'
@@ -310,6 +346,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeskAdminAccountsRouteImport
       parentRoute: typeof DeskRoute
     }
+    '/_desk/admin/analytics': {
+      id: '/_desk/admin/analytics'
+      path: '/admin/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof DeskAdminAnalyticsRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/admin/config': {
+      id: '/_desk/admin/config'
+      path: '/admin/config'
+      fullPath: '/admin/config'
+      preLoaderRoute: typeof DeskAdminConfigRouteImport
+      parentRoute: typeof DeskRoute
+    }
     '/_desk/admin/kiosks': {
       id: '/_desk/admin/kiosks'
       path: '/admin/kiosks'
@@ -322,6 +372,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/overview'
       fullPath: '/admin/overview'
       preLoaderRoute: typeof DeskAdminOverviewRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/admin/shifts': {
+      id: '/_desk/admin/shifts'
+      path: '/admin/shifts'
+      fullPath: '/admin/shifts'
+      preLoaderRoute: typeof DeskAdminShiftsRouteImport
       parentRoute: typeof DeskRoute
     }
     '/_desk/librarian/overview': {
@@ -399,8 +456,11 @@ declare module '@tanstack/react-router' {
 
 interface DeskRouteChildren {
   DeskAdminAccountsRoute: typeof DeskAdminAccountsRoute
+  DeskAdminAnalyticsRoute: typeof DeskAdminAnalyticsRoute
+  DeskAdminConfigRoute: typeof DeskAdminConfigRoute
   DeskAdminKiosksRoute: typeof DeskAdminKiosksRoute
   DeskAdminOverviewRoute: typeof DeskAdminOverviewRoute
+  DeskAdminShiftsRoute: typeof DeskAdminShiftsRoute
   DeskLibrarianOverviewRoute: typeof DeskLibrarianOverviewRoute
   DeskLibrarianRulesRoute: typeof DeskLibrarianRulesRoute
   DeskLibrarianShiftsRoute: typeof DeskLibrarianShiftsRoute
@@ -415,8 +475,11 @@ interface DeskRouteChildren {
 
 const DeskRouteChildren: DeskRouteChildren = {
   DeskAdminAccountsRoute: DeskAdminAccountsRoute,
+  DeskAdminAnalyticsRoute: DeskAdminAnalyticsRoute,
+  DeskAdminConfigRoute: DeskAdminConfigRoute,
   DeskAdminKiosksRoute: DeskAdminKiosksRoute,
   DeskAdminOverviewRoute: DeskAdminOverviewRoute,
+  DeskAdminShiftsRoute: DeskAdminShiftsRoute,
   DeskLibrarianOverviewRoute: DeskLibrarianOverviewRoute,
   DeskLibrarianRulesRoute: DeskLibrarianRulesRoute,
   DeskLibrarianShiftsRoute: DeskLibrarianShiftsRoute,
