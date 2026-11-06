@@ -179,5 +179,5 @@
 }
 
 @utility bg-stripes {
-  background-image: repeating-linear-gradient(135deg, color-mix(in oklab, white 9%, transparent) 0 2px, transparent 2px 14px);
+  background-image: repeating-linear-gradient(135deg, color-mix(in oklab, white 9%, transparent) 0 2px, transparent 2px 14px), var(--gradient-brand);
 }

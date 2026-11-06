@@ -107,7 +107,7 @@ export function PageHeader({ title, crumbs, actions, sub }: { title: string; cru
   );
 }
 
-const statBg = { white: "bg-card", yellow: "bg-brand bg-stripes text-primary-foreground border-transparent", mint: "bg-card", pink: "bg-card", sky: "bg-card" };
+const statBg = { white: "bg-card", yellow: "bg-stripes text-primary-foreground border-transparent", mint: "bg-card", pink: "bg-card", sky: "bg-card" };
 export function Stat({ label, value, sub, icon, color = "white" }: { label: string; value: ReactNode; sub?: ReactNode; icon?: ReactNode; color?: keyof typeof statBg }) {
   return (
     <div className={cn("animate-rise relative overflow-hidden rounded-2xl border border-border/70 p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-pop", statBg[color])}>
