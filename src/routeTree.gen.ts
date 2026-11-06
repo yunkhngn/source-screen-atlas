@@ -15,7 +15,12 @@ import { Route as FirstPasswordChangeRouteImport } from './routes/first-password
 import { Route as ForbiddenRouteImport } from './routes/forbidden'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SessionRouteImport } from './routes/session'
+import { Route as DeskAdminAccountsRouteImport } from './routes/_desk.admin.accounts'
+import { Route as DeskAdminKiosksRouteImport } from './routes/_desk.admin.kiosks'
+import { Route as DeskAdminOverviewRouteImport } from './routes/_desk.admin.overview'
 import { Route as DeskLibrarianOverviewRouteImport } from './routes/_desk.librarian.overview'
+import { Route as DeskLibrarianRulesRouteImport } from './routes/_desk.librarian.rules'
+import { Route as DeskLibrarianShiftsRouteImport } from './routes/_desk.librarian.shifts'
 import { Route as DeskStaffChangePasswordRouteImport } from './routes/_desk.staff.change-password'
 import { Route as DeskStaffHistoryRouteImport } from './routes/_desk.staff.history'
 import { Route as DeskStaffManualAccessRouteImport } from './routes/_desk.staff.manual-access'
@@ -53,9 +58,34 @@ const SessionRoute = SessionRouteImport.update({
   path: '/session',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeskAdminAccountsRoute = DeskAdminAccountsRouteImport.update({
+  id: '/admin/accounts',
+  path: '/admin/accounts',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskAdminKiosksRoute = DeskAdminKiosksRouteImport.update({
+  id: '/admin/kiosks',
+  path: '/admin/kiosks',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskAdminOverviewRoute = DeskAdminOverviewRouteImport.update({
+  id: '/admin/overview',
+  path: '/admin/overview',
+  getParentRoute: () => DeskRoute,
+} as any)
 const DeskLibrarianOverviewRoute = DeskLibrarianOverviewRouteImport.update({
   id: '/librarian/overview',
   path: '/librarian/overview',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskLibrarianRulesRoute = DeskLibrarianRulesRouteImport.update({
+  id: '/librarian/rules',
+  path: '/librarian/rules',
+  getParentRoute: () => DeskRoute,
+} as any)
+const DeskLibrarianShiftsRoute = DeskLibrarianShiftsRouteImport.update({
+  id: '/librarian/shifts',
+  path: '/librarian/shifts',
   getParentRoute: () => DeskRoute,
 } as any)
 const DeskStaffChangePasswordRoute = DeskStaffChangePasswordRouteImport.update({
@@ -100,7 +130,12 @@ export interface FileRoutesByFullPath {
   '/forbidden': typeof ForbiddenRoute
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
+  '/admin/accounts': typeof DeskAdminAccountsRoute
+  '/admin/kiosks': typeof DeskAdminKiosksRoute
+  '/admin/overview': typeof DeskAdminOverviewRoute
   '/librarian/overview': typeof DeskLibrarianOverviewRoute
+  '/librarian/rules': typeof DeskLibrarianRulesRoute
+  '/librarian/shifts': typeof DeskLibrarianShiftsRoute
   '/staff/change-password': typeof DeskStaffChangePasswordRoute
   '/staff/history': typeof DeskStaffHistoryRoute
   '/staff/manual-access': typeof DeskStaffManualAccessRoute
@@ -115,7 +150,12 @@ export interface FileRoutesByTo {
   '/forbidden': typeof ForbiddenRoute
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
+  '/admin/accounts': typeof DeskAdminAccountsRoute
+  '/admin/kiosks': typeof DeskAdminKiosksRoute
+  '/admin/overview': typeof DeskAdminOverviewRoute
   '/librarian/overview': typeof DeskLibrarianOverviewRoute
+  '/librarian/rules': typeof DeskLibrarianRulesRoute
+  '/librarian/shifts': typeof DeskLibrarianShiftsRoute
   '/staff/change-password': typeof DeskStaffChangePasswordRoute
   '/staff/history': typeof DeskStaffHistoryRoute
   '/staff/manual-access': typeof DeskStaffManualAccessRoute
@@ -132,7 +172,12 @@ export interface FileRoutesById {
   '/forbidden': typeof ForbiddenRoute
   '/login': typeof LoginRoute
   '/session': typeof SessionRoute
+  '/_desk/admin/accounts': typeof DeskAdminAccountsRoute
+  '/_desk/admin/kiosks': typeof DeskAdminKiosksRoute
+  '/_desk/admin/overview': typeof DeskAdminOverviewRoute
   '/_desk/librarian/overview': typeof DeskLibrarianOverviewRoute
+  '/_desk/librarian/rules': typeof DeskLibrarianRulesRoute
+  '/_desk/librarian/shifts': typeof DeskLibrarianShiftsRoute
   '/_desk/staff/change-password': typeof DeskStaffChangePasswordRoute
   '/_desk/staff/history': typeof DeskStaffHistoryRoute
   '/_desk/staff/manual-access': typeof DeskStaffManualAccessRoute
@@ -149,7 +194,12 @@ export interface FileRouteTypes {
     | '/forbidden'
     | '/login'
     | '/session'
+    | '/admin/accounts'
+    | '/admin/kiosks'
+    | '/admin/overview'
     | '/librarian/overview'
+    | '/librarian/rules'
+    | '/librarian/shifts'
     | '/staff/change-password'
     | '/staff/history'
     | '/staff/manual-access'
@@ -164,7 +214,12 @@ export interface FileRouteTypes {
     | '/forbidden'
     | '/login'
     | '/session'
+    | '/admin/accounts'
+    | '/admin/kiosks'
+    | '/admin/overview'
     | '/librarian/overview'
+    | '/librarian/rules'
+    | '/librarian/shifts'
     | '/staff/change-password'
     | '/staff/history'
     | '/staff/manual-access'
@@ -180,7 +235,12 @@ export interface FileRouteTypes {
     | '/forbidden'
     | '/login'
     | '/session'
+    | '/_desk/admin/accounts'
+    | '/_desk/admin/kiosks'
+    | '/_desk/admin/overview'
     | '/_desk/librarian/overview'
+    | '/_desk/librarian/rules'
+    | '/_desk/librarian/shifts'
     | '/_desk/staff/change-password'
     | '/_desk/staff/history'
     | '/_desk/staff/manual-access'
@@ -243,11 +303,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SessionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_desk/admin/accounts': {
+      id: '/_desk/admin/accounts'
+      path: '/admin/accounts'
+      fullPath: '/admin/accounts'
+      preLoaderRoute: typeof DeskAdminAccountsRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/admin/kiosks': {
+      id: '/_desk/admin/kiosks'
+      path: '/admin/kiosks'
+      fullPath: '/admin/kiosks'
+      preLoaderRoute: typeof DeskAdminKiosksRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/admin/overview': {
+      id: '/_desk/admin/overview'
+      path: '/admin/overview'
+      fullPath: '/admin/overview'
+      preLoaderRoute: typeof DeskAdminOverviewRouteImport
+      parentRoute: typeof DeskRoute
+    }
     '/_desk/librarian/overview': {
       id: '/_desk/librarian/overview'
       path: '/librarian/overview'
       fullPath: '/librarian/overview'
       preLoaderRoute: typeof DeskLibrarianOverviewRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/librarian/rules': {
+      id: '/_desk/librarian/rules'
+      path: '/librarian/rules'
+      fullPath: '/librarian/rules'
+      preLoaderRoute: typeof DeskLibrarianRulesRouteImport
+      parentRoute: typeof DeskRoute
+    }
+    '/_desk/librarian/shifts': {
+      id: '/_desk/librarian/shifts'
+      path: '/librarian/shifts'
+      fullPath: '/librarian/shifts'
+      preLoaderRoute: typeof DeskLibrarianShiftsRouteImport
       parentRoute: typeof DeskRoute
     }
     '/_desk/staff/change-password': {
@@ -303,7 +398,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface DeskRouteChildren {
+  DeskAdminAccountsRoute: typeof DeskAdminAccountsRoute
+  DeskAdminKiosksRoute: typeof DeskAdminKiosksRoute
+  DeskAdminOverviewRoute: typeof DeskAdminOverviewRoute
   DeskLibrarianOverviewRoute: typeof DeskLibrarianOverviewRoute
+  DeskLibrarianRulesRoute: typeof DeskLibrarianRulesRoute
+  DeskLibrarianShiftsRoute: typeof DeskLibrarianShiftsRoute
   DeskStaffChangePasswordRoute: typeof DeskStaffChangePasswordRoute
   DeskStaffHistoryRoute: typeof DeskStaffHistoryRoute
   DeskStaffManualAccessRoute: typeof DeskStaffManualAccessRoute
@@ -314,7 +414,12 @@ interface DeskRouteChildren {
 }
 
 const DeskRouteChildren: DeskRouteChildren = {
+  DeskAdminAccountsRoute: DeskAdminAccountsRoute,
+  DeskAdminKiosksRoute: DeskAdminKiosksRoute,
+  DeskAdminOverviewRoute: DeskAdminOverviewRoute,
   DeskLibrarianOverviewRoute: DeskLibrarianOverviewRoute,
+  DeskLibrarianRulesRoute: DeskLibrarianRulesRoute,
+  DeskLibrarianShiftsRoute: DeskLibrarianShiftsRoute,
   DeskStaffChangePasswordRoute: DeskStaffChangePasswordRoute,
   DeskStaffHistoryRoute: DeskStaffHistoryRoute,
   DeskStaffManualAccessRoute: DeskStaffManualAccessRoute,
