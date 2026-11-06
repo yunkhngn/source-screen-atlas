@@ -61,11 +61,15 @@
   --color-warning-soft: var(--warning-soft);
   --color-info: var(--info);
   --color-surface: var(--surface);
+  --color-violet: var(--violet);
 }
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.97 0.003 265);
+  --background: oklch(0.985 0.006 275);
+  --violet: oklch(0.54 0.25 293);
+  --gradient-brand: linear-gradient(135deg, var(--primary) 0%, var(--violet) 100%);
+  --shadow-glow: 0 10px 30px -10px color-mix(in oklab, var(--primary) 55%, transparent);
   --surface: oklch(0.955 0.004 265);
   --foreground: oklch(0.28 0.03 260);
   --card: oklch(1 0 0);
@@ -78,11 +82,11 @@
   --secondary-foreground: oklch(0.28 0.03 260);
   --muted: oklch(0.96 0.004 265);
   --muted-foreground: oklch(0.52 0.02 260);
-  --accent: oklch(0.95 0.025 262);
+  --accent: oklch(0.955 0.03 275);
   --accent-foreground: oklch(0.45 0.18 262);
   --destructive: oklch(0.56 0.2 25);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.93 0.005 265);
+  --border: oklch(0.925 0.012 275);
   --input: oklch(0.89 0.008 265);
   --ring: oklch(0.55 0.21 262);
   /* legacy names remapped to neutral/blue professional tones */
@@ -131,6 +135,8 @@
   }
   body {
     background-color: var(--color-background);
+    background-image: radial-gradient(40rem 24rem at 100% -10%, color-mix(in oklab, var(--violet) 14%, transparent), transparent 70%), radial-gradient(36rem 22rem at -10% 0%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 70%);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -149,4 +155,28 @@
 }
 .animate-scan {
   animation: scanline 2.4s ease-in-out infinite;
+}
+
+@utility bg-brand {
+  background-image: var(--gradient-brand);
+}
+@utility text-brand {
+  background-image: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+@utility bg-mesh {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(40rem 24rem at 100% -10%, color-mix(in oklab, var(--violet) 14%, transparent), transparent 70%),
+    radial-gradient(36rem 22rem at -10% 0%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 70%);
+  background-attachment: fixed;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@utility animate-rise {
+  animation: rise 0.45s cubic-bezier(.2,.7,.2,1) both;
 }
