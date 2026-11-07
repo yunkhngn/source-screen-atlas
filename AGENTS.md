@@ -34,3 +34,4 @@ use the editor.
 - Business rules and role access live in `src/lib/rules.ts` (mirrors source `_canAccess`) and are covered by `src/test/rules.test.ts`.
 - Desktop staff screens sit under the `_desk` pathless layout; student under `/student`, kiosk is a standalone fullscreen route.
 - Zustand selectors must return stable values; filter outside the selector to avoid render loops.
+- Library photography is shared through a bundled asset import on welcome, login, and student home screens so imagery remains consistent without external image dependencies.

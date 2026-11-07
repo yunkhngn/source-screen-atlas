@@ -5,9 +5,10 @@ import { useApp, useMe } from "@/lib/store";
 import { fmtDateTime, fmtDuration, fmtTime } from "@/lib/rules";
 import { Badge, Card } from "@/components/kit";
 import { MethodBadge } from "@/components/staff";
+import libraryInterior from "@/assets/library-interior.jpg";
 
 export const Route = createFileRoute("/student/home")({
-  head: () => ({ meta: [{ title: "Trang chủ — Sinh viên" }, { name: "description", content: "Trạng thái ra vào thư viện của bạn." }, { property: "og:title", content: "Trang chủ sinh viên" }, { property: "og:description", content: "Trạng thái và mã QR." }] }),
+  head: () => ({ meta: [{ title: "Trang chủ — Sinh viên | Cổng Thư Viện" }, { name: "description", content: "Trạng thái ra vào thư viện của bạn." }, { property: "og:title", content: "Trang chủ sinh viên — Cổng Thư Viện" }, { property: "og:description", content: "Trạng thái và mã QR." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: Home,
 });
 
@@ -23,6 +24,7 @@ function Home() {
     <div className="px-5 pt-6">
       <div className="text-sm text-muted-foreground">Xin chào,</div>
       <h1 className="text-2xl font-semibold">{me.name}</h1>
+      <img src={libraryInterior} alt="Không gian học tập và đọc sách tại thư viện" width={1536} height={1024} className="mt-5 aspect-[2/1] w-full rounded-2xl object-cover" />
 
       <div className={`relative mt-5 overflow-hidden rounded-xl p-5 ${open ? "bg-mint" : "bg-card border border-border"}`}>
         <div aria-hidden className="blob absolute -right-8 -top-10 size-32 bg-card/40" />
