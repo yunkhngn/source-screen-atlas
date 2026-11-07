@@ -3,6 +3,7 @@ import { MonitorSmartphone, ShieldCheck, Smartphone, BookUser, Palette, ArrowRig
 import { useApp } from "@/lib/store";
 import { Deco, Logo } from "@/components/kit";
 import type { Role } from "@/lib/rules";
+import libraryInterior from "@/assets/library-interior.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -11,6 +12,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Chọn một trong bốn trải nghiệm: Quản trị viên, Thủ thư, Kiosk tự phục vụ và Sinh viên." },
       { property: "og:title", content: "Cổng demo — Cổng Thư Viện" },
       { property: "og:description", content: "Bản mẫu tương tác hệ thống quản lý ra vào thư viện." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: DemoGate,
@@ -34,6 +37,7 @@ function DemoGate() {
       <Deco />
       <div className="relative mx-auto max-w-5xl px-6 py-16">
         <Logo />
+        <img src={libraryInterior} alt="Sinh viên học tập trong không gian thư viện ngập ánh sáng tự nhiên" width={1536} height={1024} className="mt-8 h-56 w-full rounded-3xl object-cover md:h-72" fetchPriority="high" />
         <h1 className="mt-10 max-w-2xl text-4xl font-semibold leading-tight tracking-tight">Bản mẫu giao diện hệ thống ra vào thư viện</h1>
         <p className="mt-3 max-w-xl text-muted-foreground">Cổng này chỉ dành cho người duyệt thiết kế. Chọn một trải nghiệm để khám phá — mọi dữ liệu đều là dữ liệu mô phỏng.</p>
 
