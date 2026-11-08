@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronRight, History } from "lucide-react";
+import { ChevronRight, History, LogIn, LogOut } from "lucide-react";
 import { useApp, useMe } from "@/lib/store";
 import { fmtDate, fmtDuration, fmtTime } from "@/lib/rules";
 import { Badge, Btn, Empty, Segmented } from "@/components/kit";
@@ -26,13 +26,18 @@ function StuHistory() {
         {list.length === 0 ? <Empty icon={<History className="size-6" />} title="Chưa có lượt ra vào" desc="Không có lượt nào trong khoảng thời gian này." /> : (
           <div className="mt-4 space-y-2.5">
             {list.slice(0, shown).map((s) => (
-              <Link key={s.id} to="/student/history/$sessionId" params={{ sessionId: s.id }} className="block rounded-lg bg-card p-4 shadow-soft">
-                <div className="flex items-center justify-between"><span className="font-semibold">{fmtDate(s.entryAt)}</span>{s.exitAt ? <span className="text-sm text-muted-foreground">{fmtDuration(s.exitAt - s.entryAt)}</span> : <Badge tone="success">Đang mở</Badge>}</div>
-                <div className="mt-2 flex items-center gap-2 text-sm">
-                  <span>{fmtTime(s.entryAt)} → {s.exitAt ? fmtTime(s.exitAt) : "…"}</span>
-                  <span className="ml-auto flex gap-1"><MethodBadge m={s.entryMethod} />{s.exitMethod && <MethodBadge m={s.exitMethod} />}</span>
-                  <ChevronRight className="size-4 text-muted-foreground" />
-                </div>
+              <Link key={s.id} to="/student/history/$sessionId" params={{ sessionId: s.id }} className="flex items-center gap-3.5 rounded-2xl border border-border/60 bg-card p-4 shadow-soft transition hover:shadow-pop">
+                <span className={`grid size-11 shrink-0 place-items-center rounded-xl ${s.exitAt ? "bg-secondary text-muted-foreground" : "bg-accent text-accent-foreground"}`}>
+                  {s.exitAt ? <LogOut className="size-5" /> : <LogIn className="size-5" />}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="flex items-center gap-2">
+                    <span className="font-semibold">{fmtDate(s.entryAt)}</span>
+                    {s.exitAt ? <span className="shrink-0 whitespace-nowrap rounded-full bg-secondary px-2 py-0.5 text-xs text-muted-foreground">{fmtDuration(s.exitAt - s.entryAt)}</span> : <Badge tone="success">Đang mở</Badge>}
+                  </span>
+                  <span className="mt-0.5 block text-sm text-muted-foreground tabular">{fmtTime(s.entryAt)} → {s.exitAt ? fmtTime(s.exitAt) : "…"} · <MethodBadge m={s.entryMethod} /></span>
+                </span>
+                <ChevronRight className="size-4 shrink-0 text-muted-foreground" />
               </Link>
             ))}
             {shown < list.length && <Btn variant="outline" className="w-full" onClick={() => setShown(shown + 6)}>Xem thêm</Btn>}
