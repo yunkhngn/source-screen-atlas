@@ -46,20 +46,21 @@ function Login() {
   };
 
   return (
-    <div className="grid min-h-screen bg-background md:grid-cols-2">
-      <section className="flex flex-col bg-card md:m-5 md:mr-0 md:overflow-hidden md:rounded-3xl">
-        <div className="relative h-60 overflow-hidden md:min-h-96 md:flex-1">
+    <div className="login-scene relative isolate grid min-h-svh overflow-hidden bg-background md:grid-cols-2">
+        <div className="absolute inset-0 -z-20 overflow-hidden">
           <img src={libraryInterior} alt="Không gian thư viện sáng thoáng với kệ sách, bàn học và sinh viên" width={1536} height={1024} className="absolute inset-0 h-full w-full object-cover object-center" fetchPriority="high" />
         </div>
-        <div className="hidden space-y-3 p-7 md:block lg:p-10">
+        <div className="login-wash absolute inset-0 -z-10" />
+      <section className="hidden flex-col justify-end p-10 md:flex lg:p-16">
+        <div className="space-y-3">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase text-primary"><span className="h-px w-8 bg-primary" />Không gian tri thức</div>
           <h2 className="max-w-md text-3xl font-semibold leading-snug">Mỗi lần ghé thăm,<br />một điều mới để khám phá.</h2>
           <div className="pt-2 text-xs text-muted-foreground">Cổng Thư Viện · Quản lý ra vào</div>
         </div>
       </section>
-      <div className="flex items-center justify-center px-6 py-10 md:px-8 md:py-12 lg:px-16">
-        <form onSubmit={submit} className="w-full max-w-sm space-y-5">
-          <div className="pb-6"><Logo /></div>
+      <div className="flex items-center justify-center px-5 py-8 md:px-8 md:py-12 lg:px-16">
+        <form onSubmit={submit} className="login-glass w-full max-w-md space-y-5 rounded-3xl border p-6 sm:p-8">
+          <div className="pb-2"><Logo /></div>
           <div>
             <h1 className="text-2xl font-semibold">Đăng nhập</h1>
             <p className="mt-1 text-sm text-muted-foreground">Hệ thống quản lý ra vào thư viện</p>
@@ -69,7 +70,7 @@ function Login() {
           <Field label="Mật khẩu"><PasswordInput value={pw} onChange={(e) => setPw(e.target.value)} autoComplete="current-password" /></Field>
           <Btn type="submit" size="lg" className="w-full" loading={loading}>Đăng nhập</Btn>
           <p className="text-center text-sm text-muted-foreground">Chưa có tài khoản hoặc quên mật khẩu? Vui lòng liên hệ quản trị viên.</p>
-          <div className="rounded-xl border border-dashed border-border p-3 text-xs text-muted-foreground">
+          <div className="border-t border-foreground/10 pt-4 text-xs text-muted-foreground">
             Demo: <b>SV2201234</b>, <b>TT001</b> hoặc <b>QT001</b> · mật khẩu <b>{DEMO_PASSWORD}</b> · <b>TT004</b> là tài khoản bị khóa.
           </div>
         </form>
