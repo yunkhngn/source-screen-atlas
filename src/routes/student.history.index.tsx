@@ -33,7 +33,7 @@ function StuHistory() {
                 <span className="min-w-0 flex-1">
                   <span className="flex items-center gap-2">
                     <span className="font-semibold">{fmtDate(s.entryAt)}</span>
-                    {s.exitAt ? <span className="rounded-full bg-secondary px-2 py-0.5 text-xs text-muted-foreground">{fmtDuration(s.exitAt - s.entryAt)}</span> : <Badge tone="success">Đang mở</Badge>}
+                    {s.exitAt ? <span className="shrink-0 whitespace-nowrap rounded-full bg-secondary px-2 py-0.5 text-xs text-muted-foreground">{fmtDuration(s.exitAt - s.entryAt)}</span> : <Badge tone="success">Đang mở</Badge>}
                   </span>
                   <span className="mt-0.5 block text-sm text-muted-foreground tabular">{fmtTime(s.entryAt)} → {s.exitAt ? fmtTime(s.exitAt) : "…"} · <MethodBadge m={s.entryMethod} /></span>
                 </span>
