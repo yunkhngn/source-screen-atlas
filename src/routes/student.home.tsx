@@ -26,19 +26,24 @@ function Home() {
       <h1 className="text-2xl font-semibold">{me.name}</h1>
       <img src={libraryInterior} alt="Không gian học tập và đọc sách tại thư viện" width={1536} height={1024} className="mt-5 aspect-[2/1] w-full rounded-2xl object-cover" />
 
-      <div className={`relative mt-5 overflow-hidden rounded-xl p-5 ${open ? "bg-mint" : "bg-card border border-border"}`}>
-        <div aria-hidden className="blob absolute -right-8 -top-10 size-32 bg-card/40" />
-        <div className="relative">
-          <Badge tone={open ? "success" : "neutral"}>{open ? "Đang trong thư viện" : "Đang ở ngoài thư viện"}</Badge>
-          {open ? (
-            <>
-              <div className="mt-4 text-4xl font-semibold tracking-tight">{fmtDuration(Date.now() - open.entryAt)}</div>
-              <div className="mt-1 text-sm">Vào lúc {fmtTime(open.entryAt)} · <MethodBadge m={open.entryMethod} /></div>
-            </>
-          ) : <div className="mt-4 text-sm text-muted-foreground">{last?.exitAt ? `Lần ra gần nhất: ${fmtDateTime(last.exitAt)}` : "Chưa có lượt ra vào."}</div>}
-          <div className="mt-3 text-xs text-foreground/60">Cập nhật lúc {fmtTime(Date.now())}</div>
+      {open ? (
+        <div className="bg-stripes relative mt-5 overflow-hidden rounded-2xl p-5 text-primary-foreground shadow-glow">
+          <div className="flex items-center justify-between">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-card/20 px-3 py-1 text-xs font-medium"><span className="size-1.5 animate-pulse rounded-full bg-current" />Đang trong thư viện</span>
+            <span className="text-xs opacity-75">Cập nhật {fmtTime(Date.now())}</span>
+          </div>
+          <div className="mt-5 font-display text-4xl font-semibold tracking-tight tabular">{fmtDuration(Date.now() - open.entryAt)}</div>
+          <div className="mt-2 flex items-center gap-2 text-sm opacity-90">Vào lúc {fmtTime(open.entryAt)} · <MethodBadge m={open.entryMethod} /></div>
         </div>
-      </div>
+      ) : (
+        <div className="mt-5 rounded-2xl border border-border/60 bg-card p-5 shadow-soft">
+          <div className="flex items-center justify-between">
+            <Badge tone="neutral">Đang ở ngoài thư viện</Badge>
+            <span className="text-xs text-muted-foreground">Cập nhật {fmtTime(Date.now())}</span>
+          </div>
+          <div className="mt-4 text-sm text-muted-foreground">{last?.exitAt ? `Lần ra gần nhất: ${fmtDateTime(last.exitAt)}` : "Chưa có lượt ra vào."}</div>
+        </div>
+      )}
 
       <Link to="/student/qr" className="mt-4 flex items-center gap-4 rounded-xl bg-primary p-5 text-primary-foreground">
         <span className="grid size-12 place-items-center rounded-lg bg-yellow text-foreground"><QrCode className="size-6" /></span>
