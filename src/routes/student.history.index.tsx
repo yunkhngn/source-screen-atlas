@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronRight, History } from "lucide-react";
+import { ChevronRight, History, LogIn, LogOut } from "lucide-react";
 import { useApp, useMe } from "@/lib/store";
 import { fmtDate, fmtDuration, fmtTime } from "@/lib/rules";
 import { Badge, Btn, Empty, Segmented } from "@/components/kit";
